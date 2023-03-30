@@ -1,0 +1,11 @@
+@import "primeng/sidebar";
+
+.pi {
+  font-size: 1em;
+}
+
+.p-input-icon-left > i:first-of-type {
+  left: 2rem;
+  position: relative;
+  color: rgba(255, 255, 255, 0.6);
+}

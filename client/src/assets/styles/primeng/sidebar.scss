@@ -1,0 +1,18 @@
+.visible-sideBar .p-sidebar {
+  transition: width 0.2s;
+  width: var(--sidebar-width-expanded);
+}
+
+.hidden-sideBar .p-sidebar {
+  transition: width 0.2s;
+  width: var(--sidebar-width-collapsed);
+}
+
+.p-sidebar-header {
+  display: none !important;
+}
+
+.p-sidebar-content {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
