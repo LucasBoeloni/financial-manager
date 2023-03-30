@@ -1,4 +1,4 @@
-export class UsuarioModel {
+export class UserModel {
 
   public id: number;
 
@@ -10,7 +10,7 @@ export class UsuarioModel {
 
   public password: string;
 
-  public mail: string;
+  public email: string;
 
   public active: boolean = true
   constructor() {

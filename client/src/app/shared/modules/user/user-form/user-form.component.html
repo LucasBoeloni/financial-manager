@@ -1,0 +1,29 @@
+<sgf-modal-form (onSave)="save()" header="New user" (onClose)="onClose()" [(visible)]="visible">
+  <form [formGroup]="form">
+    <div class="div-modal">
+      <div class="col-12 flex">
+        <div class="col-6">
+          <label for="name">name</label>
+          <input id="name" class="col-12" formControlName="name" type="text" placeholder="name" pInputText>
+        </div>
+        <div class="col-6">
+          <label for="surname">surname</label>
+          <input id="surname" class="col-12" type="text" formControlName="surname" placeholder="surname"
+                 pInputText>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="col-12">
+          <label for="email">email</label>
+          <input id="email" class="col-12" type="text" formControlName="email" placeholder="email" pInputText>
+        </div>
+        <div class="col-12">
+          <label for="password">password</label>
+          <input id="password" pPassword type="password" class="col-12" formControlName="password" placeholder="password"
+                 [feedback]="false">
+        </div>
+      </div>
+    </div>
+  </form>
+
+</sgf-modal-form>

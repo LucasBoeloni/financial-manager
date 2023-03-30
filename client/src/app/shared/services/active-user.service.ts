@@ -1,4 +1,4 @@
-import {UsuarioModel} from "../models/usuarioModel";
+import {UserModel} from "../models/user.model";
 
 const USER = 'user';
 
@@ -16,15 +16,15 @@ export class ActiveUserService {
 		return ActiveUserService.instance;
 	}
 
-	private get activeUser(): UsuarioModel | null {
+	private get activeUser(): UserModel | null {
 		const user = localStorage.getItem(USER);
     if(!!user){
-      return JSON.parse(user) as UsuarioModel;
+      return JSON.parse(user) as UserModel;
     }
     return null;
 	}
 
-	private set activeUser(activeUser: UsuarioModel | null) {
+	private set activeUser(activeUser: UserModel | null) {
 		 localStorage.setItem(USER,JSON.stringify(activeUser))
 	}
 
@@ -36,11 +36,11 @@ export class ActiveUserService {
 		return false;
 	}
 
-  public setUser(usuarioLogado: UsuarioModel): void {
-    this.activeUser = usuarioLogado;
+  public setUser(userLogado: UserModel): void {
+    this.activeUser = userLogado;
   }
 
-  public getUser(): UsuarioModel | null{
+  public getUser(): UserModel | null{
     return this.activeUser;
   }
 
