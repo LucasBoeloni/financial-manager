@@ -1,0 +1,33 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="202330031500-01" author="Lucas.Boeloni">
+
+        <createTable tableName="TB_MONTH_YEAR_EXPENSE">
+
+			<column name="ID_EXPENSE" type="bigint">
+				<constraints nullable="false"/>
+			</column>
+
+			<column name="ID_MONTH_YEAR" type="bigint">
+				<constraints nullable="false"/>
+			</column>
+
+			<column name="ID_USER" type="bigint">
+				<constraints nullable="false"/>
+			</column>
+			
+        </createTable>
+
+		<addForeignKeyConstraint baseTableName="TB_MONTH_YEAR_EXPENSE" baseColumnNames="ID_USER" constraintName="FK_MONTH_YEAR_EXPENSE_USER" referencedTableName="TB_USER" referencedColumnNames="ID"/>
+
+		<addForeignKeyConstraint baseTableName="TB_MONTH_YEAR_EXPENSE" baseColumnNames="ID_EXPENSE" constraintName="FK_MONTH_YEAR_EXPENSE_EXPENSE" referencedTableName="TB_EXPENSE" referencedColumnNames="ID"/>
+
+		<addForeignKeyConstraint baseTableName="TB_MONTH_YEAR_EXPENSE" baseColumnNames="ID_MONTH_YEAR" constraintName="FK_MONTH_YEAR_EXPENSE_MONTH_YEAR" referencedTableName="MONTH_YEAR" referencedColumnNames="ID"/>
+
+
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,44 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="202330031432-01" author="Lucas.Boeloni">
+
+        <createTable tableName="TB_MONTLHY_EXPENSE">
+
+            <column name="ID" type="bigint">
+                <constraints nullable="false" unique="true"/>
+            </column>
+
+            <column name="NAME" type="VARCHAR(31)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="START_DATE" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+
+			<column name="END_DATE" type="DATE">
+				<constraints nullable="true"/>
+			</column>
+
+			<column name="DAY" type="number">
+				<constraints nullable="false"/>
+			</column>
+
+			<column name="ID_USER" type="bigint">
+				<constraints nullable="false"/>
+			</column>
+			
+        </createTable>
+
+        <createSequence sequenceName="SEQUENCE_MONTLHY_EXPENSE" startValue="1"/>
+
+        <addPrimaryKey tableName="TB_MONTLHY_EXPENSE" columnNames="ID" constraintName="PK_MONTLHY_EXPENSE"/>
+
+		<addForeignKeyConstraint baseTableName="TB_MONTHLY_EXPENSE" baseColumnNames="ID_USER" constraintName="FK_MONTHLY_EXPENSE_USER" referencedTableName="TB_USER" referencedColumnNames="ID"/>
+
+	</changeSet>
+
+</databaseChangeLog>
