@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../services/user.service";
-import {UserModel} from "../../../models/user.model";
+import {UserModel} from "../../../shared/models/user.model";
 
 @Component({
   selector: 'user-form',

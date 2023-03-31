@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {ActiveUserService} from "../../../services/active-user.service";
-import {UserModel} from "../../../models/user.model";
-import {RouteNames} from "../../../../rout-enum";
+import {ActiveUserService} from "../../../shared/services/active-user.service";
+import {UserModel} from "../../../shared/models/user.model";
+import {RouteNames} from "../../../rout-enum";
 import {UserService} from "../../user/services/user.service";
 
 @Component({

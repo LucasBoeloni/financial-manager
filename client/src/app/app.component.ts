@@ -28,7 +28,7 @@ export class AppComponent implements OnInit{
   ngOnInit() {
 
     this.menuItens.push(...[
-      new SideBarMenuItem('Dashboard', '/', 'pi pi-chart-bar'),
+      new SideBarMenuItem('Dashboard', RouteNames.ROUT_DASHBOARD, 'pi pi-chart-bar'),
       new SideBarMenuItem('Expense', '/', 'pi pi-calendar-times'),
       new SideBarMenuItem('Goal', '/', 'pi pi-car'),
     ])

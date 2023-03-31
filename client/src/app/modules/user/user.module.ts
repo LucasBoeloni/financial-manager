@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {UserService} from "./services/user.service";
-import {SharedModule} from "../../shared.module";
+import {SharedModule} from "../../shared/shared.module";
 import {UserFormComponent} from "./user-form/user-form.component";
 
 

@@ -1,8 +1,8 @@
 import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
-import {GenericService} from "../../../services/generic.service";
-import {UserModel} from "../../../models/user.model";
+import {GenericService} from "../../../shared/services/generic.service";
+import {UserModel} from "../../../shared/models/user.model";
 
 @Injectable({
   providedIn: 'root'
