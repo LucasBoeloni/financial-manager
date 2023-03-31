@@ -1,0 +1,14 @@
+<div class="flex p-card header-expense justify-content-between" >
+  <div class="flex">
+    <h3>Expenses from : </h3>
+    <p-dropdown class="margin-select" [(ngModel)]="selectedMonthYear" (onChange)="onMonthYearChange($event)" [options]="monthYears"></p-dropdown>
+  </div>
+  <div class="div-button">
+    <p-button label="New Recurrent Expense" icon="pi pi-plus"></p-button>
+    <p-button label="See my Recurrent Expenses" icon="pi pi-eye"></p-button>
+  </div>
+</div>
+
+<div class="p-card body-expense">
+  <expense-card></expense-card>
+</div>

@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import {SelectModel} from "../../../shared/models/select.model";
 
 @Component({
-  selector: 'app-expense',
-  templateUrl: './expense.component.html',
-  styleUrls: ['./expense.component.scss']
+  selector: 'app-month-year-expense',
+  templateUrl: './month-year-expense.component.html',
+  styleUrls: ['./month-year-expense.component.scss']
 })
-export class ExpenseComponent {
+export class MonthYearExpenseComponent {
 
   monthYears: SelectModel[] = [
     new SelectModel('january/2022',1),

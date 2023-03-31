@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {ExpenseComponent} from "./expense/expense.component";
+import {MonthYearExpenseComponent} from "./month-year-expense/month-year-expense.component";
 
 
 const routes: Routes = [
   {
     path: '',
-    component: ExpenseComponent
+    component: MonthYearExpenseComponent
   },
 ];
 

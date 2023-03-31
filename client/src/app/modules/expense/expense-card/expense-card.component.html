@@ -1,0 +1,11 @@
+<div class="p-card col-2 card-expense flex grow justify-content-between">
+  <div>
+    <p>Expense : {{expense.name}}</p>
+    <p>Price : {{expense.value | currency : currency }}</p>
+    <p>Date : {{expense.date | date : 'dd/MM/YY' }}</p>
+  </div>
+  <div>
+    <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-text"></p-button>
+    <p-button icon="pi pi-pencil" styleClass="p-button-rounded p-button-text"></p-button>
+  </div>
+</div>
