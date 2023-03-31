@@ -5,7 +5,7 @@
 
     <changeSet id="202330031432-01" author="Lucas.Boeloni">
 
-        <createTable tableName="TB_MONTLHY_EXPENSE">
+        <createTable tableName="TB_MONTHLY_EXPENSE">
 
             <column name="ID" type="bigint">
                 <constraints nullable="false" unique="true"/>
@@ -33,9 +33,9 @@
 			
         </createTable>
 
-        <createSequence sequenceName="SEQUENCE_MONTLHY_EXPENSE" startValue="1"/>
+        <createSequence sequenceName="SEQUENCE_MONTHLY_EXPENSE" startValue="1"/>
 
-        <addPrimaryKey tableName="TB_MONTLHY_EXPENSE" columnNames="ID" constraintName="PK_MONTLHY_EXPENSE"/>
+        <addPrimaryKey tableName="TB_MONTHLY_EXPENSE" columnNames="ID" constraintName="PK_MONTHLY_EXPENSE"/>
 
 		<addForeignKeyConstraint baseTableName="TB_MONTHLY_EXPENSE" baseColumnNames="ID_USER" constraintName="FK_MONTHLY_EXPENSE_USER" referencedTableName="TB_USER" referencedColumnNames="ID"/>
 

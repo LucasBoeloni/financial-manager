@@ -39,7 +39,7 @@
 
         <createSequence sequenceName="SEQUENCE_USER" startValue="1"/>
 
-        <addPrimaryKey tableName="USER" columnNames="ID" constraintName="PK_USER"/>
+        <addPrimaryKey tableName="TB_USER" columnNames="ID" constraintName="PK_USER"/>
 
     </changeSet>
 

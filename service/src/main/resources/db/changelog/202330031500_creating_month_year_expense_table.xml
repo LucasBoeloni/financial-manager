@@ -25,7 +25,7 @@
 
 		<addForeignKeyConstraint baseTableName="TB_MONTH_YEAR_EXPENSE" baseColumnNames="ID_EXPENSE" constraintName="FK_MONTH_YEAR_EXPENSE_EXPENSE" referencedTableName="TB_EXPENSE" referencedColumnNames="ID"/>
 
-		<addForeignKeyConstraint baseTableName="TB_MONTH_YEAR_EXPENSE" baseColumnNames="ID_MONTH_YEAR" constraintName="FK_MONTH_YEAR_EXPENSE_MONTH_YEAR" referencedTableName="MONTH_YEAR" referencedColumnNames="ID"/>
+		<addForeignKeyConstraint baseTableName="TB_MONTH_YEAR_EXPENSE" baseColumnNames="ID_MONTH_YEAR" constraintName="FK_MONTH_YEAR_EXPENSE_MONTH_YEAR" referencedTableName="TB_MONTH_YEAR" referencedColumnNames="ID"/>
 
 
 	</changeSet>

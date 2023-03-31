@@ -31,7 +31,7 @@
 
         <createSequence sequenceName="SEQUENCE_EXPENSE" startValue="1"/>
 
-        <addPrimaryKey tableName="EXPENSE" columnNames="ID" constraintName="PK_EXPENSE"/>
+        <addPrimaryKey tableName="TB_EXPENSE" columnNames="ID" constraintName="PK_EXPENSE"/>
 
 		<addForeignKeyConstraint baseTableName="TB_EXPENSE" baseColumnNames="ID_USER" constraintName="FK_EXPENSE_USER" referencedTableName="TB_USER" referencedColumnNames="ID"/>
 
