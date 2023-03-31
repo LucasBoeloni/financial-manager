@@ -1,11 +1,26 @@
-<div class="p-card col-2 card-expense flex grow justify-content-between">
-  <div>
-    <p>Expense : {{expense.name}}</p>
-    <p>Price : {{expense.value | currency : currency }}</p>
-    <p>Date : {{expense.date | date : dateFormat }}</p>
+<div class="p-card col-2 card-expense flex grow justify-content-between" xmlns:div="http://www.w3.org/1999/html">
+  <div *ngIf="!editing">
+    <p>Expense : {{ expense.name }}</p>
+    <p>Price : {{ expense.value | currency : currency }}</p>
+    <p>Date : {{ expense.date | date : dateFormat }}</p>
+  </div>
+  <div class="card-editing" *ngIf="editing">
+    <div class="flex justify-content-between">
+      <label for="name">Expense : </label>
+      <input [(ngModel)]="expense.name" pInputText id="name">
+    </div>
+    <div class="flex justify-content-between">
+      <label for="value">Price : </label>
+      <p-inputNumber mode="currency" [currency]="currency" [(ngModel)]="expense.value" id="value"></p-inputNumber>
+    </div>
+    <div class="flex justify-content-between">
+      <label for="date">Date : </label>
+      <p-calendar [(ngModel)]="expense.date" appendTo="body" id="date"></p-calendar>
+    </div>
   </div>
   <div>
     <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-text"></p-button>
-    <p-button icon="pi pi-pencil" styleClass="p-button-rounded p-button-text"></p-button>
+    <p-button *ngIf="!editing" icon="pi pi-pencil" (onClick)="toggleEdit()" styleClass="p-button-rounded p-button-text"></p-button>
+    <p-button *ngIf="editing" icon="pi pi-check" (onClick)="toggleEdit()" styleClass="p-button-rounded p-button-text"></p-button>
   </div>
 </div>

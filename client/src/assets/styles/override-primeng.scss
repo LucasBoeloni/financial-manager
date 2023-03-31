@@ -9,3 +9,10 @@
   position: relative;
   color: rgba(255, 255, 255, 0.6);
 }
+
+.card-editing p-inputNumber span {
+  width: 100%;
+  input{
+    width: 60%;
+  }
+}

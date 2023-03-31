@@ -7,3 +7,18 @@
 
 .grow { transition: all .2s ease-in-out; }
 .grow:hover { transform: scale(1.05); }
+
+.card-editing {
+  label {
+    margin-top: 2vh;
+  }
+  input {
+    width: 60%;
+  }
+  p-calendar {
+    width: 60%;
+  }
+  p-inputNumber {
+    width: 60%;
+  }
+}
