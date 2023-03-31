@@ -2,7 +2,7 @@
   <div>
     <p>Expense : {{expense.name}}</p>
     <p>Price : {{expense.value | currency : currency }}</p>
-    <p>Date : {{expense.date | date : 'dd/MM/YY' }}</p>
+    <p>Date : {{expense.date | date : dateFormat }}</p>
   </div>
   <div>
     <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-text"></p-button>
