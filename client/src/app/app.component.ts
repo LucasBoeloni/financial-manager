@@ -28,15 +28,15 @@ export class AppComponent implements OnInit{
   ngOnInit() {
 
     this.menuItens.push(...[
-      new SideBarMenuItem('Dashboard', RouteNames.ROUT_DASHBOARD, 'pi pi-chart-bar'),
-      new SideBarMenuItem('Expense', '/', 'pi pi-calendar-times'),
-      new SideBarMenuItem('Goal', '/', 'pi pi-car'),
+      new SideBarMenuItem('Dashboard', RouteNames.DASHBOARD, 'pi pi-chart-bar'),
+      new SideBarMenuItem('Expense', RouteNames.EXPENSE, 'pi pi-calendar-times'),
+      new SideBarMenuItem('Goal', RouteNames.GOAL, 'pi pi-car'),
     ])
   }
 
   private userOnHandle() {
     if (!this.userOn) {
-      this.router.navigateByUrl(RouteNames.ROUT_LOGIN);
+      this.router.navigateByUrl(RouteNames.LOGIN);
     }
   }
 }
