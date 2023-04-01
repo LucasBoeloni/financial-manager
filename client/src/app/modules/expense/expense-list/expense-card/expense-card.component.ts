@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {ExpenseModel} from "../models/expense.model";
-import {ExpenseService} from "../service/expense.service";
+import {ExpenseModel} from "../../models/expense.model";
+import {ExpenseService} from "../../service/expense.service";
 
 @Component({
   selector: 'expense-card',
