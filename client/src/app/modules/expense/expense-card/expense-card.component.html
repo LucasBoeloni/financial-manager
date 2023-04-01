@@ -1,5 +1,5 @@
-<div class="p-card col-2 card-expense flex grow justify-content-between" xmlns:div="http://www.w3.org/1999/html">
-  <div *ngIf="!editing">
+<div class="p-card card-expense flex grow {{isNewExpense() ? 'new-expense-div' : 'justify-content-between'}} ">
+  <div *ngIf="!labelVisible()">
     <p>Expense : {{ expense.name }}</p>
     <p>Price : {{ expense.value | currency : currency }}</p>
     <p>Date : {{ expense.date | date : dateFormat }}</p>
@@ -18,9 +18,10 @@
       <p-calendar [(ngModel)]="expense.date" appendTo="body" id="date"></p-calendar>
     </div>
   </div>
-  <div>
-    <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-text"></p-button>
+  <div *ngIf="!isNewExpense()" >
+    <p-button *ngIf="!isCreatingNewExpense()" icon="pi pi-trash" styleClass="p-button-rounded p-button-text"></p-button>
     <p-button *ngIf="!editing" icon="pi pi-pencil" (onClick)="toggleEdit()" styleClass="p-button-rounded p-button-text"></p-button>
     <p-button *ngIf="editing" icon="pi pi-check" (onClick)="toggleEdit()" styleClass="p-button-rounded p-button-text"></p-button>
   </div>
+  <p-button *ngIf="isNewExpense()" icon="pi pi-plus" (onClick)="createNewExpense()" styleClass="p-button-rounded p-button-text new-expense-button"></p-button>
 </div>

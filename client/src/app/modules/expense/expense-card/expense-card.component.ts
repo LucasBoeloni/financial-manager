@@ -8,13 +8,30 @@ import {ExpenseModel} from "../models/expense.model";
 })
 export class ExpenseCardComponent {
 
-  @Input() expense: ExpenseModel = new ExpenseModel(1,'aaaa',52.5,new Date())
+  @Input() expense: ExpenseModel;
   @Input() currency: string = 'BRL';
   @Input() dateFormat: string = 'dd/MM/YYYY';
   @Input() editing: boolean = false;
 
   toggleEdit(): void{
     this.editing = !this.editing;
+  }
+
+  isNewExpense(): boolean {
+    return this.expense.id === -1;
+  }
+
+  isCreatingNewExpense(): boolean {
+    return this.expense.id === 0;
+  }
+
+  createNewExpense(): void{
+    this.editing = true;
+    this.expense.id = 0;
+  }
+
+  labelVisible(): boolean {
+    return !(!this.isNewExpense() && !this.editing);
   }
 
 }

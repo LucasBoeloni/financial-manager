@@ -1,8 +1,18 @@
 .card-expense{
   cursor: pointer;
   overflow-x: hidden;
-  background-image: linear-gradient(90deg, #161D21, #070707) ;
+  background-image: linear-gradient(0.25turn,#070707, #161D21, #070707) ;
   transition: all .2s ease-in-out;
+  min-height: 9em;
+  max-height: 9em;
+  div{
+    padding-left: 1vh;
+  }
+}
+
+.new-expense-div {
+  align-items: center;
+  place-content: center;
 }
 
 .grow { transition: all .2s ease-in-out; }
