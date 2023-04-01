@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("SELECT new com.personal.service.service.dto.UserDTO(u) from User u where  u.active = true AND LOWER(u.email) LIKE LOWER(:#{#user.email})  AND LOWER(u.password) LIKE LOWER(:#{#user.password})")
     public Optional<UserDTO> login(@Param("user") UserDTO user);

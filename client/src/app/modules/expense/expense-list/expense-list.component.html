@@ -1,4 +1,7 @@
 <div class="flex col-12" >
+  <div class="col-2">
+    <expense-card [expense]="newExpense" ></expense-card>
+  </div>
   <div *ngFor="let expense of expenses" class="col-2">
     <expense-card [expense]="expense" ></expense-card>
   </div>

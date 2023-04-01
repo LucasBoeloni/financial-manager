@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {ExpenseModel} from "../models/expense.model";
+import {ExpenseService} from "../service/expense.service";
 
 @Component({
   selector: 'expense-card',
@@ -12,6 +13,11 @@ export class ExpenseCardComponent {
   @Input() currency: string = 'BRL';
   @Input() dateFormat: string = 'dd/MM/YYYY';
   @Input() editing: boolean = false;
+
+  constructor(
+    private service: ExpenseService
+  ) {
+  }
 
   toggleEdit(): void{
     this.editing = !this.editing;
@@ -42,8 +48,10 @@ export class ExpenseCardComponent {
   }
 
   save(): void {
-    //TODO : do save toggle edit, after request is complete
-    this.toggleEdit();
+    this.service.create(this.expense).subscribe(response => {
+      this.expense = response;
+      this.toggleEdit();
+    })
   }
 
 }

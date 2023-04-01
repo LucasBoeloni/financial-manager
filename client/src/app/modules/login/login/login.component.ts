@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.service.logar(this.getuser())
+    this.service.login(this.getuser())
       .subscribe((res: any) => {
         this.activeUserService.setUser(res);
         this.router.navigateByUrl(RouteNames.DASHBOARD)

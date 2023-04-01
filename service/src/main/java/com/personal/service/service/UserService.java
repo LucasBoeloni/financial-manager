@@ -19,11 +19,11 @@ public class UserService {
     private final UserRepository repository;
     private final UserMapper mapper;
 
-    private User findById(Integer id) {
+    private User findById(Long id) {
         return repository.findById(id).orElseThrow(() -> new BadRequestException(ExceptionMessageUtil.ENTITY_NOT_FOUND));
     }
 
-    public UserDTO getById(Integer id) {
+    public UserDTO getById(Long id) {
         return mapper.toDto(findById(id));
     }
 
