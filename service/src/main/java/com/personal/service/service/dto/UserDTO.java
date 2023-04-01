@@ -25,7 +25,7 @@ public class UserDTO implements Serializable {
 
 	private String email;
 
-	private Boolean active;
+	private Boolean active = true;
 
 	public UserDTO (User user) {
 		this.id = user.getId();

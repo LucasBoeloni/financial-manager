@@ -15,7 +15,7 @@ export class MonthYearExpenseComponent implements OnInit{
 
   monthYears: SelectModel[] = [];
 
-  selectedMonthYear: SelectModel = this.monthYears[this.monthYears.length -1];
+  selectedMonthYear: SelectModel;
 
   expenses: ExpenseModel[] = [];
 
@@ -27,7 +27,9 @@ export class MonthYearExpenseComponent implements OnInit{
   }
 
   public onMonthYearChange(event: any): void{
-
+    if(!!this.selectedMonthYear){
+      SelectedMonthYearService.getInstance().setMonthYear(this.selectedMonthYear);
+    }
   }
 
   ngOnInit(): void {

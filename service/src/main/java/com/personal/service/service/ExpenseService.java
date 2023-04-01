@@ -18,7 +18,8 @@ import javax.ws.rs.BadRequestException;
 @RequiredArgsConstructor
 public class ExpenseService {
 
-    private final ExpenseRepository repository;
+	public static final int JOKER_ID = 0;
+	private final ExpenseRepository repository;
     private final ExpenseMapper mapper;
 
     private Expense findById(Long id) {
@@ -30,7 +31,7 @@ public class ExpenseService {
     }
 
     public ExpenseDTO insert(ExpenseDTO dto) {
-		if(0 == dto.getId()){
+		if(JOKER_ID == dto.getId()){
 			dto.setId(null);
 		}
         return mapper.toDto(repository.save(mapper.toEntity(dto)));

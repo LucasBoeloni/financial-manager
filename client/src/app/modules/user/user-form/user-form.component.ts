@@ -32,10 +32,10 @@ export class UserFormComponent implements OnInit {
 
   iniciarForm() {
     this.form = this.formBuilder.group({
-      nome: [null, [Validators.required]],
-      sobrenome: [null, [Validators.required]],
+      name: [null, [Validators.required]],
+      surname: [null, [Validators.required]],
       email: [null, [Validators.email]],
-      senha: [null, [Validators.required]],
+      password: [null, [Validators.required]],
 
     })
   }

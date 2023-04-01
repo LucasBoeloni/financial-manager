@@ -1,6 +1,6 @@
 import {SelectModel} from "../models/select.model";
 
-const MONTH_YEAR = 'user';
+const MONTH_YEAR = 'monthYear';
 
 export class SelectedMonthYearService {
 	private static instance: SelectedMonthYearService;
