@@ -34,4 +34,11 @@ export class ExpenseCardComponent {
     return !(!this.isNewExpense() && !this.editing);
   }
 
+  cancel(): void {
+    this.editing = false;
+    if(this.expense.id === 0){
+      this.expense.id = -1;
+    }
+  }
+
 }
