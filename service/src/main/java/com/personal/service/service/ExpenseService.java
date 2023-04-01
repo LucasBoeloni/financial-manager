@@ -6,8 +6,6 @@ import com.personal.service.service.dto.ExpenseDTO;
 import com.personal.service.service.mapper.ExpenseMapper;
 import com.personal.service.utils.ExceptionMessageUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -34,7 +32,8 @@ public class ExpenseService {
 		if(JOKER_ID == dto.getId()){
 			dto.setId(null);
 		}
-        return mapper.toDto(repository.save(mapper.toEntity(dto)));
+		Expense entity = repository.save(mapper.toEntity(dto));
+        return mapper.toDto(entity);
     }
 
 }

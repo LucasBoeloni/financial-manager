@@ -22,6 +22,8 @@ public class ExpenseDTO implements Serializable {
 
 	private LocalDate date;
 
+	private Long monthYearId;
+
 	private UserDTO user;
 
 }

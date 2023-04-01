@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import {ExpenseModel} from "../../models/expense.model";
 import {ExpenseService} from "../../service/expense.service";
 import {SelectedMonthYearService} from "../../../../shared/services/selected-month-year.service";
+import {ActiveUserService} from "../../../../shared/services/active-user.service";
 
 @Component({
   selector: 'expense-card',
@@ -49,13 +50,19 @@ export class ExpenseCardComponent {
   }
 
   save(): void {
-    if(!this.expense.monthYear){
-      this.expense.monthYear = SelectedMonthYearService.getInstance().getMonthYear()?.value;
-    }
+    this.handleRelations();
     this.service.create(this.expense).subscribe(response => {
       this.expense = response;
       this.toggleEdit();
     })
   }
 
+  private handleRelations() {
+    if (!this.expense.monthYear) {
+      this.expense.monthYear = SelectedMonthYearService.getInstance().getMonthYear()?.value;
+    }
+    if (this.expense.user) {
+      this.expense.user = ActiveUserService.getInstance().getUser()
+    }
+  }
 }

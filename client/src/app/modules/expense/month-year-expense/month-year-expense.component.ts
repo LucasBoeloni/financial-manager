@@ -45,6 +45,7 @@ export class MonthYearExpenseComponent implements OnInit{
         this.createNewMonthYear(todayMonthYearString);
       }else {
         this.selectedMonthYear = this.monthYears[this.monthYears.length -1];
+        SelectedMonthYearService.getInstance().setMonthYear(this.selectedMonthYear);
       }
     })
   }
