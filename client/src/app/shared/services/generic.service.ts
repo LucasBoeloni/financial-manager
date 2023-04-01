@@ -2,6 +2,7 @@ import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Page} from "../models/page.model";
+import {ActiveUserService} from "./active-user.service";
 
 export abstract class GenericService {
 
@@ -24,7 +25,7 @@ export abstract class GenericService {
   }
 
   public create<T>(model: T): Observable<T> {
-    return this.httpClient.post<T>(this.resourceUrl, model)
+    return this.httpClient.post<T>(this.resourceUrl, model, {params: {user: JSON.stringify(ActiveUserService.getInstance().getUser()?.id)}})
   }
 
   public delete(id: number): Observable<void> {

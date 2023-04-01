@@ -1,5 +1,4 @@
-import {UserModel} from "../../../shared/models/user.model";
-import {ActiveUserService} from "../../../shared/services/active-user.service";
+import {SelectedMonthYearService} from "../../../shared/services/selected-month-year.service";
 
 export class ExpenseModel{
   constructor(
@@ -7,7 +6,7 @@ export class ExpenseModel{
     public name: string,
     public value: number,
     public date: Date,
-    public user: UserModel | null = ActiveUserService.getInstance().getUser()
+    public monthYear: number | null = SelectedMonthYearService.getInstance().getMonthYear()?.value
   ) {
   }
 

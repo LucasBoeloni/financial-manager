@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {SelectModel} from "../../../shared/models/select.model";
 import {ExpenseModel} from "../models/expense.model";
-import {ExpenseService} from "../service/expense.service";
-import {Pageable} from "../../../shared/models/pageable.model";
+import {MonthYearService} from "../service/month-year.service";
+import {MonthStringUtil} from "../../../shared/utils/month-string-util";
+import {SelectedMonthYearService} from "../../../shared/services/selected-month-year.service";
+
 
 @Component({
   selector: 'app-month-year-expense',
@@ -11,16 +13,16 @@ import {Pageable} from "../../../shared/models/pageable.model";
 })
 export class MonthYearExpenseComponent implements OnInit{
 
-  monthYears: SelectModel[] = [
-    new SelectModel('january/2022',1),
-    new SelectModel('february/2022',2),
-  ];
+  monthYears: SelectModel[] = [];
 
-  selectedMonthYear: any = this.monthYears[this.monthYears.length -1];
+  selectedMonthYear: SelectModel = this.monthYears[this.monthYears.length -1];
 
   expenses: ExpenseModel[] = [];
 
+  loadingExpenses: boolean = true;
+
   constructor(
+    private service: MonthYearService
   ) {
   }
 
@@ -29,6 +31,27 @@ export class MonthYearExpenseComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    const todayMonthYear: Date = new Date();
+    const todayMonthYearString: string = MonthStringUtil.buildMonthYearString(todayMonthYear);
+    this.handleMonthYearDropDown(todayMonthYearString);
   }
 
+  private handleMonthYearDropDown(todayMonthYearString: string) {
+    this.service.getAllUnpaged().subscribe(response => {
+      this.monthYears = response;
+      if (!this.monthYears.some(month => month.label === todayMonthYearString)) {
+        this.createNewMonthYear(todayMonthYearString);
+      }else {
+        this.selectedMonthYear = this.monthYears[this.monthYears.length -1];
+      }
+    })
+  }
+
+  private createNewMonthYear(todayMonthYearString: string) {
+    this.service.create(new SelectModel(todayMonthYearString, null)).subscribe(response => {
+      this.monthYears.push(response);
+      this.selectedMonthYear = response;
+      SelectedMonthYearService.getInstance().setMonthYear(this.selectedMonthYear);
+    })
+  }
 }
