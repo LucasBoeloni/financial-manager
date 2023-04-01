@@ -14,7 +14,7 @@ export class MonthYearService extends GenericService {
     super(httpCliente, 'month-year');
   }
 
-  public getAllUnpaged(): Observable<SelectModel[]>{
+  public getAllUnpaged(): Observable<SelectModel[]> {
     return this.httpClient.get<SelectModel[]>(`${this.resourceUrl}/unpaged`, {params: {user: JSON.stringify(ActiveUserService.getInstance().getUser()?.id)}});
   }
 

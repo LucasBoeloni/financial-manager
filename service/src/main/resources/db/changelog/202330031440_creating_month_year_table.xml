@@ -1,35 +1,36 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
-    <changeSet id="202330031440-01" author="Lucas.Boeloni">
+	<changeSet id="202330031440-01" author="Lucas.Boeloni">
 
-        <createTable tableName="TB_MONTH_YEAR">
+		<createTable tableName="TB_MONTH_YEAR">
 
-            <column name="ID" type="bigint">
-                <constraints nullable="false" unique="true"/>
-            </column>
+			<column name="ID" type="bigint">
+				<constraints nullable="false" unique="true"/>
+			</column>
 
-            <column name="NAME" type="VARCHAR(31)">
-                <constraints nullable="false"/>
-            </column>
+			<column name="NAME" type="VARCHAR(31)">
+				<constraints nullable="false"/>
+			</column>
 
-            <column name="DATE" type="DATE">
-                <constraints nullable="true"/>
-            </column>
+			<column name="DATE" type="DATE">
+				<constraints nullable="true"/>
+			</column>
 
 			<column name="ID_USER" type="bigint">
 				<constraints nullable="false"/>
 			</column>
-			
-        </createTable>
 
-        <createSequence sequenceName="SEQUENCE_MONTH_YEAR" startValue="1"/>
+		</createTable>
 
-        <addPrimaryKey tableName="TB_MONTH_YEAR" columnNames="ID" constraintName="PK_MONTH_YEAR"/>
+		<createSequence sequenceName="SEQUENCE_MONTH_YEAR" startValue="1"/>
 
-		<addForeignKeyConstraint baseTableName="TB_MONTH_YEAR" baseColumnNames="ID_USER" constraintName="FK_MONTH_YEAR_USER" referencedTableName="TB_USER" referencedColumnNames="ID"/>
+		<addPrimaryKey tableName="TB_MONTH_YEAR" columnNames="ID" constraintName="PK_MONTH_YEAR"/>
+
+		<addForeignKeyConstraint baseTableName="TB_MONTH_YEAR" baseColumnNames="ID_USER" constraintName="FK_MONTH_YEAR_USER"
+								 referencedTableName="TB_USER" referencedColumnNames="ID"/>
 
 	</changeSet>
 

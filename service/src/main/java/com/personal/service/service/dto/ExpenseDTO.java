@@ -1,6 +1,5 @@
 package com.personal.service.service.dto;
 
-import com.personal.service.domain.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

@@ -1,4 +1,3 @@
-
 export class MonthStringUtil {
   public static buildMonthYearString(data: Date): string {
     const year = data.getFullYear();

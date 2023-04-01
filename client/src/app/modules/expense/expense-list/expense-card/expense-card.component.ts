@@ -21,7 +21,7 @@ export class ExpenseCardComponent {
   ) {
   }
 
-  toggleEdit(): void{
+  toggleEdit(): void {
     this.editing = !this.editing;
   }
 
@@ -33,7 +33,7 @@ export class ExpenseCardComponent {
     return this.expense.id === 0;
   }
 
-  createNewExpense(): void{
+  createNewExpense(): void {
     this.editing = true;
     this.expense.id = 0;
   }
@@ -44,7 +44,7 @@ export class ExpenseCardComponent {
 
   cancel(): void {
     this.editing = false;
-    if(this.expense.id === 0){
+    if (this.expense.id === 0) {
       this.expense.id = -1;
     }
   }

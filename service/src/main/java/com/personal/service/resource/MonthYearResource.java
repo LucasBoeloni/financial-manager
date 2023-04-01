@@ -20,16 +20,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MonthYearResource {
 
-    private final MonthYearService service;
+	private final MonthYearService service;
 
-    @GetMapping(value = "/unpaged")
-    public ResponseEntity<List<SelectionDTO>> getAll(@RequestParam("user") Long userId) {
-        return new ResponseEntity<>(service.getAll(userId), HttpStatus.OK);
-    }
+	@GetMapping(value = "/unpaged")
+	public ResponseEntity<List<SelectionDTO>> getAll(@RequestParam("user") Long userId) {
+		return new ResponseEntity<>(service.getAll(userId), HttpStatus.OK);
+	}
 
-    @PostMapping()
-    public ResponseEntity<SelectionDTO> insert(@RequestBody SelectionDTO dto, @RequestParam("user") Long userId) {
-        return new ResponseEntity<>(service.insert(dto,userId), HttpStatus.CREATED);
-    }
+	@PostMapping()
+	public ResponseEntity<SelectionDTO> insert(@RequestBody SelectionDTO dto, @RequestParam("user") Long userId) {
+		return new ResponseEntity<>(service.insert(dto, userId), HttpStatus.CREATED);
+	}
 
 }

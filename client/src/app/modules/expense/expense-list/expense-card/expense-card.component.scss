@@ -1,11 +1,12 @@
-.card-expense{
+.card-expense {
   cursor: pointer;
   overflow-x: hidden;
-  background-image: linear-gradient(0.25turn,#070707, #161D21, #070707) ;
+  background-image: linear-gradient(0.25turn, #070707, #161D21, #070707);
   transition: all .2s ease-in-out;
   min-height: 9em;
   max-height: 9em;
-  div{
+
+  div {
     padding-left: 1vh;
   }
 }
@@ -15,19 +16,27 @@
   place-content: center;
 }
 
-.grow { transition: all .2s ease-in-out; }
-.grow:hover { transform: scale(1.05); }
+.grow {
+  transition: all .2s ease-in-out;
+}
+
+.grow:hover {
+  transform: scale(1.05);
+}
 
 .card-editing {
   label {
     margin-top: 2vh;
   }
+
   input {
     width: 60%;
   }
+
   p-calendar {
     width: 60%;
   }
+
   p-inputNumber {
     width: 60%;
   }

@@ -6,10 +6,10 @@ import {ExpenseModel} from "../models/expense.model";
   templateUrl: './expense-list.component.html',
   styleUrls: ['./expense-list.component.scss']
 })
-export class ExpenseListComponent implements OnInit{
+export class ExpenseListComponent implements OnInit {
 
   @Input() expenses: ExpenseModel[] = [];
-  newExpense = new ExpenseModel(-1,'',0,new Date());
+  newExpense = new ExpenseModel(-1, '', 0, new Date());
 
   ngOnInit(): void {
   }

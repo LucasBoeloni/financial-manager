@@ -1,42 +1,42 @@
 .hidden-sideBar {
-	text-align: center;
+  text-align: center;
 }
 
 .visible-button {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .sidebar-header {
-	--main-padding-thickness: 0.5vw;
+  --main-padding-thickness: 0.5vw;
 
-	font-size: calc(var(--sidebar-width-collapsed) - var(--main-padding-thickness) * 2);
-	margin: 0;
-	height: 1.5em;
-	padding: var(--main-padding-thickness);
+  font-size: calc(var(--sidebar-width-collapsed) - var(--main-padding-thickness) * 2);
+  margin: 0;
+  height: 1.5em;
+  padding: var(--main-padding-thickness);
 
 }
 
 .sideBarMenuItem {
-	display: block;
-	font-size: 1vw;
-	margin: 0;
-	padding: 0.5rem;
+  display: block;
+  font-size: 1vw;
+  margin: 0;
+  padding: 0.5rem;
   text-decoration: none;
 
-	&:hover {
-		background-color: #212121;
-		font-weight: bold;
-	}
+  &:hover {
+    background-color: #212121;
+    font-weight: bold;
+  }
 
-	> p {
-		display: inline-block;
-		margin: 0;
-		padding-left: 0.5em;
-	}
+  > p {
+    display: inline-block;
+    margin: 0;
+    padding-left: 0.5em;
+  }
 
 
 }
 
 hr {
-	margin: 0;
+  margin: 0;
 }

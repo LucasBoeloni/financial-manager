@@ -12,6 +12,7 @@ export class UserService extends GenericService {
   constructor(httpCliente: HttpClient) {
     super(httpCliente, 'users');
   }
+
   public login(model: UserModel): Observable<UserModel> {
     return this.httpClient.post<UserModel>(`${this.resourceUrl}/login`, model)
   }

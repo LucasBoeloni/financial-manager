@@ -18,22 +18,22 @@ public class ExpenseService {
 
 	public static final int JOKER_ID = 0;
 	private final ExpenseRepository repository;
-    private final ExpenseMapper mapper;
+	private final ExpenseMapper mapper;
 
-    private Expense findById(Long id) {
-        return repository.findById(id).orElseThrow(() -> new BadRequestException(ExceptionMessageUtil.ENTITY_NOT_FOUND));
-    }
+	private Expense findById(Long id) {
+		return repository.findById(id).orElseThrow(() -> new BadRequestException(ExceptionMessageUtil.ENTITY_NOT_FOUND));
+	}
 
-    public ExpenseDTO getById(Long id) {
-        return mapper.toDto(findById(id));
-    }
+	public ExpenseDTO getById(Long id) {
+		return mapper.toDto(findById(id));
+	}
 
-    public ExpenseDTO insert(ExpenseDTO dto) {
-		if(JOKER_ID == dto.getId()){
+	public ExpenseDTO insert(ExpenseDTO dto) {
+		if (JOKER_ID == dto.getId()) {
 			dto.setId(null);
 		}
 		Expense entity = repository.save(mapper.toEntity(dto));
-        return mapper.toDto(entity);
-    }
+		return mapper.toDto(entity);
+	}
 
 }

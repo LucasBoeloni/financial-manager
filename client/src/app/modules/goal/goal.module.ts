@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { GoalComponent } from './goal/goal.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {GoalComponent} from './goal/goal.component';
 import {SharedModule} from "../../shared/shared.module";
 import {GoalRoutingModule} from "./goal-routing.module";
-
 
 
 @NgModule({
@@ -19,4 +18,5 @@ import {GoalRoutingModule} from "./goal-routing.module";
     GoalComponent
   ]
 })
-export class GoalModule { }
+export class GoalModule {
+}

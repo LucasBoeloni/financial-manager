@@ -2,7 +2,7 @@ import {SelectedMonthYearService} from "../../../shared/services/selected-month-
 import {UserModel} from "../../../shared/models/user.model";
 import {ActiveUserService} from "../../../shared/services/active-user.service";
 
-export class ExpenseModel{
+export class ExpenseModel {
   constructor(
     public id: number,
     public name: string,

@@ -11,7 +11,7 @@ import {SelectedMonthYearService} from "../../../shared/services/selected-month-
   templateUrl: './month-year-expense.component.html',
   styleUrls: ['./month-year-expense.component.scss']
 })
-export class MonthYearExpenseComponent implements OnInit{
+export class MonthYearExpenseComponent implements OnInit {
 
   monthYears: SelectModel[] = [];
 
@@ -26,8 +26,8 @@ export class MonthYearExpenseComponent implements OnInit{
   ) {
   }
 
-  public onMonthYearChange(event: any): void{
-    if(!!this.selectedMonthYear){
+  public onMonthYearChange(event: any): void {
+    if (!!this.selectedMonthYear) {
       SelectedMonthYearService.getInstance().setMonthYear(this.selectedMonthYear);
     }
   }
@@ -43,8 +43,8 @@ export class MonthYearExpenseComponent implements OnInit{
       this.monthYears = response;
       if (!this.monthYears.some(month => month.label === todayMonthYearString)) {
         this.createNewMonthYear(todayMonthYearString);
-      }else {
-        this.selectedMonthYear = this.monthYears[this.monthYears.length -1];
+      } else {
+        this.selectedMonthYear = this.monthYears[this.monthYears.length - 1];
         SelectedMonthYearService.getInstance().setMonthYear(this.selectedMonthYear);
       }
     })

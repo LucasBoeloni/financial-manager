@@ -18,21 +18,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class UserResource {
 
-    private final UserService service;
+	private final UserService service;
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<UserDTO> getById(@PathVariable Long id) {
-        return new ResponseEntity<>(service.getById(id), HttpStatus.OK);
-    }
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<UserDTO> getById(@PathVariable Long id) {
+		return new ResponseEntity<>(service.getById(id), HttpStatus.OK);
+	}
 
-    @PostMapping()
-    public ResponseEntity<UserDTO> insert(@RequestBody UserDTO dto) {
-        return new ResponseEntity<>(service.insert(dto), HttpStatus.CREATED);
-    }
+	@PostMapping()
+	public ResponseEntity<UserDTO> insert(@RequestBody UserDTO dto) {
+		return new ResponseEntity<>(service.insert(dto), HttpStatus.CREATED);
+	}
 
-    @PostMapping("/login")
-    public ResponseEntity<UserDTO> login(@RequestBody UserDTO dto) {
-        return new ResponseEntity<>(service.login(dto), HttpStatus.OK);
-    }
+	@PostMapping("/login")
+	public ResponseEntity<UserDTO> login(@RequestBody UserDTO dto) {
+		return new ResponseEntity<>(service.login(dto), HttpStatus.OK);
+	}
 
 }

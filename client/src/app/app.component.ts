@@ -9,7 +9,7 @@ import {RouteNames} from "./rout-enum";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'client';
   userOn: boolean = false;
   menuItens: SideBarMenuItem[] = [];

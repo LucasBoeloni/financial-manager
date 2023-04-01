@@ -13,6 +13,7 @@ export class UserModel {
   public email: string;
 
   public active: boolean = true
+
   constructor() {
   }
 }

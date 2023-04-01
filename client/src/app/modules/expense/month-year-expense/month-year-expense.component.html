@@ -1,10 +1,11 @@
-<div class="flex p-card header-expense justify-content-between" >
+<div class="flex p-card header-expense justify-content-between">
   <div class="flex">
     <h3>Expenses from : </h3>
     <div>
       <i *ngIf="!selectedMonthYear" class="pi pi-spin pi-spinner"></i>
     </div>
-    <p-dropdown *ngIf="!!selectedMonthYear" class="margin-select" [(ngModel)]="selectedMonthYear" (onChange)="onMonthYearChange($event)" [options]="monthYears"></p-dropdown>
+    <p-dropdown *ngIf="!!selectedMonthYear" class="margin-select" [(ngModel)]="selectedMonthYear"
+                (onChange)="onMonthYearChange($event)" [options]="monthYears"></p-dropdown>
   </div>
   <div class="div-button">
     <p-button label="New Recurrent Expense" icon="pi pi-plus"></p-button>
@@ -13,8 +14,8 @@
 </div>
 
 <div class="p-card body-expense">
-  <div *ngIf="loadingExpenses" class="col-12 text-center" >
-    <i  class="pi pi-spin pi-spinner"></i>
+  <div *ngIf="loadingExpenses" class="col-12 text-center">
+    <i class="pi pi-spin pi-spinner"></i>
   </div>
-  <expense-list [expenses]="expenses" ></expense-list>
+  <expense-list [expenses]="expenses"></expense-list>
 </div>

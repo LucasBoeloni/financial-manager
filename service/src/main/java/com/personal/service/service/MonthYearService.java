@@ -16,21 +16,21 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MonthYearService {
 
-    private final MonthYearRepository repository;
+	private final MonthYearRepository repository;
 
-    public SelectionDTO insert(SelectionDTO dto, Long userId) {
+	public SelectionDTO insert(SelectionDTO dto, Long userId) {
 		MonthYear entity = new MonthYear();
 		entity.setUser(new User());
 		entity.getUser().setId(userId);
 		entity.setName(dto.getLabel());
 		entity.setDate(LocalDate.now());
 
-        entity = repository.save(entity);
+		entity = repository.save(entity);
 		dto.setValue(entity.getId());
 		return dto;
-    }
+	}
 
-	public List<SelectionDTO> getAll(Long userId){
+	public List<SelectionDTO> getAll(Long userId) {
 		return repository.getAllSelection(userId);
 	}
 

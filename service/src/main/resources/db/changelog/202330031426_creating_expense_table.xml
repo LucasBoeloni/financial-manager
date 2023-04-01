@@ -1,40 +1,41 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
-    <changeSet id="202330031426-01" author="Lucas.Boeloni">
+	<changeSet id="202330031426-01" author="Lucas.Boeloni">
 
-        <createTable tableName="TB_EXPENSE">
+		<createTable tableName="TB_EXPENSE">
 
-            <column name="ID" type="bigint">
-                <constraints nullable="false" unique="true"/>
-            </column>
+			<column name="ID" type="bigint">
+				<constraints nullable="false" unique="true"/>
+			</column>
 
-            <column name="NAME" type="VARCHAR(31)">
-                <constraints nullable="false"/>
-            </column>
+			<column name="NAME" type="VARCHAR(31)">
+				<constraints nullable="false"/>
+			</column>
 
-            <column name="VALUE" type="decimal">
-                <constraints nullable="false"/>
-            </column>
+			<column name="VALUE" type="decimal">
+				<constraints nullable="false"/>
+			</column>
 
-            <column name="DATE" type="date">
-                <constraints nullable="false"/>
-            </column>
+			<column name="DATE" type="date">
+				<constraints nullable="false"/>
+			</column>
 
 			<column name="ID_USER" type="bigint">
 				<constraints nullable="false"/>
 			</column>
 
-        </createTable>
+		</createTable>
 
-        <createSequence sequenceName="SEQUENCE_EXPENSE" startValue="1"/>
+		<createSequence sequenceName="SEQUENCE_EXPENSE" startValue="1"/>
 
-        <addPrimaryKey tableName="TB_EXPENSE" columnNames="ID" constraintName="PK_EXPENSE"/>
+		<addPrimaryKey tableName="TB_EXPENSE" columnNames="ID" constraintName="PK_EXPENSE"/>
 
-		<addForeignKeyConstraint baseTableName="TB_EXPENSE" baseColumnNames="ID_USER" constraintName="FK_EXPENSE_USER" referencedTableName="TB_USER" referencedColumnNames="ID"/>
+		<addForeignKeyConstraint baseTableName="TB_EXPENSE" baseColumnNames="ID_USER" constraintName="FK_EXPENSE_USER"
+								 referencedTableName="TB_USER" referencedColumnNames="ID"/>
 
-    </changeSet>
+	</changeSet>
 
 </databaseChangeLog>
