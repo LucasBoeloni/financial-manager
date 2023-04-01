@@ -41,4 +41,9 @@ export class ExpenseCardComponent {
     }
   }
 
+  save(): void {
+    //TODO : do save toggle edit, after request is complete
+    this.toggleEdit();
+  }
+
 }
