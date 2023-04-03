@@ -15,6 +15,6 @@ public class MonthYearExpenseDTO implements Serializable {
 
 	private Long monthYearId;
 
-	private UserDTO user;
+	private Long userId;
 
 }

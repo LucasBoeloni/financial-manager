@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 
 @RestController
@@ -26,8 +29,14 @@ public class ExpenseResource {
 	}
 
 	@PostMapping()
-	public ResponseEntity<ExpenseDTO> insert(@RequestBody ExpenseDTO dto) {
-		return new ResponseEntity<>(service.insert(dto), HttpStatus.CREATED);
+	public ResponseEntity<ExpenseDTO> insert(@RequestBody ExpenseDTO dto, @RequestParam("user") Long userId
+			, @RequestParam("monthYear") Long monthYearId) {
+		return new ResponseEntity<>(service.insert(dto, userId, monthYearId), HttpStatus.CREATED);
+	}
+
+	@GetMapping(value ="/list")
+	public ResponseEntity<List<ExpenseDTO>> insert(@RequestParam("user") Long userId, @RequestParam("monthYear") Long monthYearId) {
+		return new ResponseEntity<>(service.getAll(monthYearId, userId), HttpStatus.OK);
 	}
 
 }

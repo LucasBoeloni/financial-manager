@@ -22,7 +22,7 @@ public class MonthYearResource {
 
 	private final MonthYearService service;
 
-	@GetMapping(value = "/unpaged")
+	@GetMapping(value = "/list")
 	public ResponseEntity<List<SelectionDTO>> getAll(@RequestParam("user") Long userId) {
 		return new ResponseEntity<>(service.getAll(userId), HttpStatus.OK);
 	}

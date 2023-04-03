@@ -38,6 +38,9 @@ public class Expense {
 	@Column(name = "DATE")
 	private LocalDate date;
 
+	@Column(name = "active")
+	private Boolean active;
+
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	@JoinColumn(name = "ID_USER", referencedColumnName = "id")
 	private User user;

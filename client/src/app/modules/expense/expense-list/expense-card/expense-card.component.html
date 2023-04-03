@@ -29,4 +29,7 @@
   </div>
   <p-button *ngIf="isNewExpense()" icon="pi pi-plus" (onClick)="createNewExpense()"
             styleClass="p-button-rounded p-button-text new-expense-button"></p-button>
+  <div>
+    <i *ngIf="isSavingExpense" class="pi pi-spin pi-spinner"></i>
+  </div>
 </div>

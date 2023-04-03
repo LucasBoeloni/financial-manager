@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ExpenseModel} from "../models/expense.model";
 
 @Component({
@@ -10,8 +10,13 @@ export class ExpenseListComponent implements OnInit {
 
   @Input() expenses: ExpenseModel[] = [];
   newExpense = new ExpenseModel(-1, '', 0, new Date());
+  @Output() onNewExpense: EventEmitter<ExpenseModel> = new EventEmitter<ExpenseModel>();
 
   ngOnInit(): void {
+  }
+
+  onNewExpenseEmitter(event: ExpenseModel){
+    this.onNewExpense.emit(event)
   }
 
 }

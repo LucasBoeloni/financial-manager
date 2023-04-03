@@ -24,19 +24,19 @@ import javax.persistence.Table;
 public class MonthYearExpense {
 
 	@Id
-	@Column(name = "TB_EXPENSE")
+	@Column(name = "ID_EXPENSE")
 	private Long expenseId;
 
 	@Id
-	@Column(name = "TB_MONTH_YEAR")
+	@Column(name = "ID_MONTH_YEAR")
 	private Long monthYearId;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "TB_EXPENSE", referencedColumnName = "id", insertable = false, updatable = false)
+	@JoinColumn(name = "ID_EXPENSE", referencedColumnName = "id", insertable = false, updatable = false)
 	private Expense expense;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "TB_MONTH_YEAR", referencedColumnName = "id", insertable = false, updatable = false)
+	@JoinColumn(name = "ID_MONTH_YEAR", referencedColumnName = "id", insertable = false, updatable = false)
 	private MonthYear monthYear;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)

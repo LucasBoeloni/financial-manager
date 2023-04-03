@@ -17,5 +17,5 @@
   <div *ngIf="loadingExpenses" class="col-12 text-center">
     <i class="pi pi-spin pi-spinner"></i>
   </div>
-  <expense-list [expenses]="expenses"></expense-list>
+  <expense-list (onNewExpense)="addAndRearrangeExpenses($event)" [expenses]="expenses"></expense-list>
 </div>

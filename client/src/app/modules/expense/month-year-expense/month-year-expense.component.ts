@@ -4,6 +4,7 @@ import {ExpenseModel} from "../models/expense.model";
 import {MonthYearService} from "../service/month-year.service";
 import {MonthStringUtil} from "../../../shared/utils/month-string-util";
 import {SelectedMonthYearService} from "../../../shared/services/selected-month-year.service";
+import {ExpenseService} from "../service/expense.service";
 
 
 @Component({
@@ -22,30 +23,36 @@ export class MonthYearExpenseComponent implements OnInit {
   loadingExpenses: boolean = true;
 
   constructor(
-    private service: MonthYearService
-  ) {
+    private service: MonthYearService,
+    private expenseService: ExpenseService
+) {
   }
 
   public onMonthYearChange(event: any): void {
     if (!!this.selectedMonthYear) {
-      SelectedMonthYearService.getInstance().setMonthYear(this.selectedMonthYear);
+      this.setMonthYearAndFind();
     }
+  }
+
+  private setMonthYearAndFind() {
+    SelectedMonthYearService.getInstance().setMonthYear(this.selectedMonthYear);
+    this.getExpenses()
   }
 
   ngOnInit(): void {
     const todayMonthYear: Date = new Date();
     const todayMonthYearString: string = MonthStringUtil.buildMonthYearString(todayMonthYear);
-    this.handleMonthYearDropDown(todayMonthYearString);
+    this.startPage(todayMonthYearString);
   }
 
-  private handleMonthYearDropDown(todayMonthYearString: string) {
-    this.service.getAllUnpaged().subscribe(response => {
+  private startPage(todayMonthYearString: string) {
+    this.service.findAllList<SelectModel>().subscribe(response => {
       this.monthYears = response;
       if (!this.monthYears.some(month => month.label === todayMonthYearString)) {
         this.createNewMonthYear(todayMonthYearString);
       } else {
         this.selectedMonthYear = this.monthYears[this.monthYears.length - 1];
-        SelectedMonthYearService.getInstance().setMonthYear(this.selectedMonthYear);
+        this.setMonthYearAndFind()
       }
     })
   }
@@ -54,7 +61,23 @@ export class MonthYearExpenseComponent implements OnInit {
     this.service.create(new SelectModel(todayMonthYearString, null)).subscribe(response => {
       this.monthYears.push(response);
       this.selectedMonthYear = response;
-      SelectedMonthYearService.getInstance().setMonthYear(this.selectedMonthYear);
+      this.setMonthYearAndFind()
     })
   }
+
+  private getExpenses(): void{
+    this.loadingExpenses = true;
+    this.expenseService.findAllList<ExpenseModel>().subscribe(response => {
+      this.expenses = response
+      this.loadingExpenses = false;
+    });
+  }
+
+  public addAndRearrangeExpenses(newExpense: ExpenseModel){
+    const backup = this.expenses;
+    this.expenses = [];
+    this.expenses.push(newExpense)
+    this.expenses.push(...backup);
+  }
+
 }

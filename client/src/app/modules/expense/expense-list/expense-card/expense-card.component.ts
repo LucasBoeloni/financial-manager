@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ExpenseModel} from "../../models/expense.model";
 import {ExpenseService} from "../../service/expense.service";
 import {SelectedMonthYearService} from "../../../../shared/services/selected-month-year.service";
@@ -15,6 +15,9 @@ export class ExpenseCardComponent {
   @Input() currency: string = 'BRL';
   @Input() dateFormat: string = 'dd/MM/YYYY';
   @Input() editing: boolean = false;
+  @Output() onNewExpense: EventEmitter<ExpenseModel> = new EventEmitter<ExpenseModel>()
+
+  isSavingExpense = false;
 
   constructor(
     private service: ExpenseService
@@ -50,10 +53,17 @@ export class ExpenseCardComponent {
   }
 
   save(): void {
+    this.isSavingExpense = true
     this.handleRelations();
+    const newExpense = this.expense.id === 0;
     this.service.create(this.expense).subscribe(response => {
       this.expense = response;
+      this.onNewExpense.emit(this.expense);
       this.toggleEdit();
+      this.isSavingExpense = false;
+      if(newExpense){
+        this.expense = new ExpenseModel(-1, '', 0, new Date())
+      }
     })
   }
 
