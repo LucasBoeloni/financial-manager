@@ -1,6 +1,7 @@
 .header-expense {
   padding: 2vh;
   margin-bottom: 1vh;
+  place-items: center;
 }
 
 .margin-select {
@@ -18,4 +19,11 @@
 
 .div-button {
   text-align: end;
+}
+
+.div-data {
+  padding-top: 1em;
+  h3 {
+    padding-left: 1em
+  }
 }

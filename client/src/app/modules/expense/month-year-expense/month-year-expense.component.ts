@@ -5,6 +5,7 @@ import {MonthYearService} from "../service/month-year.service";
 import {MonthStringUtil} from "../../../shared/utils/month-string-util";
 import {SelectedMonthYearService} from "../../../shared/services/selected-month-year.service";
 import {ExpenseService} from "../service/expense.service";
+import {DataExpenseModel} from "../models/data-expense.model";
 
 
 @Component({
@@ -21,6 +22,10 @@ export class MonthYearExpenseComponent implements OnInit {
   expenses: ExpenseModel[] = [];
 
   loadingExpenses: boolean = true;
+
+  data: DataExpenseModel = new DataExpenseModel();
+
+  currency: string = 'BRL';
 
   constructor(
     private service: MonthYearService,
@@ -69,6 +74,7 @@ export class MonthYearExpenseComponent implements OnInit {
     this.loadingExpenses = true;
     this.expenseService.findAllList<ExpenseModel>().subscribe(response => {
       this.expenses = response
+      this.refreshData();
       this.loadingExpenses = false;
     });
   }
@@ -78,10 +84,20 @@ export class MonthYearExpenseComponent implements OnInit {
     this.expenses = [];
     this.expenses.push(newExpense)
     this.expenses.push(...backup);
+    this.refreshData();
   }
 
   public removeAndRearrangeExpenses(oldExpense: ExpenseModel){
     this.expenses.splice(this.expenses.indexOf(oldExpense), 1);
+    this.refreshData();
+  }
+
+  private refreshData(){
+    const initialValue = 0;
+    const total = this.expenses.map(expense => expense.value)
+      .reduce((accumulator, currentValue) => accumulator + currentValue, initialValue);
+    this.data.amount = this.expenses.length;
+    this.data.total = total;
   }
 
 }
