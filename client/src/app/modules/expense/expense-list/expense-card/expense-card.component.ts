@@ -16,8 +16,9 @@ export class ExpenseCardComponent {
   @Input() dateFormat: string = 'dd/MM/YYYY';
   @Input() editing: boolean = false;
   @Output() onNewExpense: EventEmitter<ExpenseModel> = new EventEmitter<ExpenseModel>()
+  @Output() onDeleteExpense: EventEmitter<ExpenseModel> = new EventEmitter<ExpenseModel>()
 
-  isSavingExpense = false;
+  isLoadingExpense: boolean = false;
 
   constructor(
     private service: ExpenseService
@@ -53,14 +54,14 @@ export class ExpenseCardComponent {
   }
 
   save(): void {
-    this.isSavingExpense = true
+    this.isLoadingExpense = true
     this.handleRelations();
     const newExpense = this.expense.id === 0;
     this.service.create(this.expense).subscribe(response => {
       this.expense = response;
       this.onNewExpense.emit(this.expense);
       this.toggleEdit();
-      this.isSavingExpense = false;
+      this.isLoadingExpense = false;
       if(newExpense){
         this.expense = new ExpenseModel(-1, '', 0, new Date())
       }
@@ -75,4 +76,13 @@ export class ExpenseCardComponent {
       this.expense.user = ActiveUserService.getInstance().getUser()
     }
   }
+
+  deleteExpense(){
+    this.isLoadingExpense = true;
+    this.service.delete(this.expense.id).subscribe(() => {
+      this.onDeleteExpense.emit(this.expense)
+      this.isLoadingExpense = false;
+    })
+  }
+
 }

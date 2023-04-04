@@ -5,6 +5,7 @@ import com.personal.service.service.dto.ExpenseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,6 +38,12 @@ public class ExpenseResource {
 	@GetMapping(value ="/list")
 	public ResponseEntity<List<ExpenseDTO>> insert(@RequestParam("user") Long userId, @RequestParam("monthYear") Long monthYearId) {
 		return new ResponseEntity<>(service.getAll(monthYearId, userId), HttpStatus.OK);
+	}
+
+	@DeleteMapping(value ="/{id}")
+	public ResponseEntity<List<ExpenseDTO>> deactivateExpense(@PathVariable Long id) {
+		service.deativateActive(id);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 }

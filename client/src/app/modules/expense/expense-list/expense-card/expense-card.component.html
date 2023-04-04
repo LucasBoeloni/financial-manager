@@ -19,7 +19,7 @@
     </div>
   </div>
   <div *ngIf="!isNewExpense()">
-    <p-button *ngIf="!isCreatingNewExpense()" icon="pi pi-trash" styleClass="p-button-rounded p-button-text"></p-button>
+    <p-button *ngIf="!isCreatingNewExpense()" icon="pi pi-trash" (onClick)="deleteExpense()" styleClass="p-button-rounded p-button-text"></p-button>
     <p-button *ngIf="!editing" icon="pi pi-pencil" (onClick)="toggleEdit()"
               styleClass="p-button-rounded p-button-text"></p-button>
     <p-button *ngIf="editing" icon="pi pi-check" (onClick)="save()"
@@ -30,6 +30,6 @@
   <p-button *ngIf="isNewExpense()" icon="pi pi-plus" (onClick)="createNewExpense()"
             styleClass="p-button-rounded p-button-text new-expense-button"></p-button>
   <div>
-    <i *ngIf="isSavingExpense" class="pi pi-spin pi-spinner"></i>
+    <i *ngIf="isLoadingExpense" class="pi pi-spin pi-spinner"></i>
   </div>
 </div>

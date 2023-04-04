@@ -80,4 +80,8 @@ export class MonthYearExpenseComponent implements OnInit {
     this.expenses.push(...backup);
   }
 
+  public removeAndRearrangeExpenses(oldExpense: ExpenseModel){
+    this.expenses.splice(this.expenses.indexOf(oldExpense), 1);
+  }
+
 }
