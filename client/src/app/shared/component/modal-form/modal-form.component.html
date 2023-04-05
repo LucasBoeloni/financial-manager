@@ -1,4 +1,4 @@
-<p-dialog [(visible)]="visible" [header]="header" (onHide)="onCloseHandle()" [modal]="true" [closable]="true"
+<p-dialog [(visible)]="visible" [header]="header"  styleClass="md:my-modal-width lg:my-modal-width xl:my-modal-width " (onHide)="onCloseHandle()" [modal]="true" [closable]="true"
           appendTo="body" [draggable]="false">
   <ng-container *ngTemplateOutlet="externalContent"></ng-container>
   <ng-template #externalContent>

@@ -1,0 +1,15 @@
+@media screen and (min-width: 768px) {
+  .md\:my-modal-width {
+    width: 60% !important;;
+  }
+}
+@media screen and (min-width: 992px) {
+  .lg\:my-modal-width {
+    width: 50% !important;;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .xl\:my-modal-width {
+    width: 50% !important;
+  }
+}
