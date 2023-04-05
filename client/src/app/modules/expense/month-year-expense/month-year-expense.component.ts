@@ -92,7 +92,7 @@ export class MonthYearExpenseComponent implements OnInit {
     this.refreshData();
   }
 
-  private refreshData(){
+  refreshData(){
     const initialValue = 0;
     const total = this.expenses.map(expense => expense.value)
       .reduce((accumulator, currentValue) => accumulator + currentValue, initialValue);

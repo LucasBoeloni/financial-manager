@@ -3,7 +3,7 @@
     <expense-card (onNewExpense)="onNewExpenseEmitter($event)" [expense]="newExpense"></expense-card>
   </div>
   <div *ngFor="let expense of expenses" class="col-12 sm:col-12 md:col-6 lg:col-3 xl:col-2">
-    <expense-card (onDeleteExpense)="onDeleteExpenseEmitter($event)" [expense]="expense"></expense-card>
+    <expense-card (onEditExpense)="onEditExpenseEmitter($event)" (onDeleteExpense)="onDeleteExpenseEmitter($event)" [expense]="expense"></expense-card>
   </div>
 </div>
 

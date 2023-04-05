@@ -15,7 +15,7 @@
     </div>
     <div class="flex justify-content-between">
       <label for="date">Date : </label>
-      <p-calendar [(ngModel)]="expense.date" appendTo="body" id="date"></p-calendar>
+      <p-calendar [(ngModel)]="expense.date" [readonlyInput]="true" [dateFormat]="pCalendarDateFormat" appendTo="body" id="date"></p-calendar>
     </div>
   </div>
   <div *ngIf="!isNewExpense()">

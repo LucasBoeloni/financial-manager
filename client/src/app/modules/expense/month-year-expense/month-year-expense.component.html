@@ -22,5 +22,5 @@
   <div *ngIf="loadingExpenses" class="col-12 text-center">
     <i class="pi pi-spin pi-spinner"></i>
   </div>
-  <expense-list (onNewExpense)="addAndRearrangeExpenses($event)" (onDeleteExpense)="removeAndRearrangeExpenses($event)" [expenses]="expenses"></expense-list>
+  <expense-list (onEditExpense)="refreshData()" (onNewExpense)="addAndRearrangeExpenses($event)" (onDeleteExpense)="removeAndRearrangeExpenses($event)" [expenses]="expenses"></expense-list>
 </div>

@@ -3,6 +3,7 @@ import {ExpenseModel} from "../../models/expense.model";
 import {ExpenseService} from "../../service/expense.service";
 import {SelectedMonthYearService} from "../../../../shared/services/selected-month-year.service";
 import {ActiveUserService} from "../../../../shared/services/active-user.service";
+import * as moment from "moment";
 
 @Component({
   selector: 'expense-card',
@@ -13,10 +14,14 @@ export class ExpenseCardComponent {
 
   @Input() expense: ExpenseModel;
   @Input() currency: string = 'BRL';
-  @Input() dateFormat: string = 'dd/MM/YYYY';
+  @Input() dateFormat: string = 'dd/MM/yyyy';
+  private readonly YEAR_FIX = 2;
+  pCalendarDateFormat = this.dateFormat.toLowerCase().substring(0,this.dateFormat.length - this.YEAR_FIX);
   @Input() editing: boolean = false;
-  @Output() onNewExpense: EventEmitter<ExpenseModel> = new EventEmitter<ExpenseModel>()
-  @Output() onDeleteExpense: EventEmitter<ExpenseModel> = new EventEmitter<ExpenseModel>()
+  @Output() onNewExpense: EventEmitter<ExpenseModel> = new EventEmitter<ExpenseModel>();
+  @Output() onDeleteExpense: EventEmitter<ExpenseModel> = new EventEmitter<ExpenseModel>();
+  @Output() onEditExpense: EventEmitter<ExpenseModel> = new EventEmitter<ExpenseModel>();
+
 
   isLoadingExpense: boolean = false;
 
@@ -27,6 +32,9 @@ export class ExpenseCardComponent {
 
   toggleEdit(): void {
     this.editing = !this.editing;
+    if(this.editing){
+      this.expense.date = moment(this.expense.date).toDate();
+    }
   }
 
   isNewExpense(): boolean {
@@ -59,11 +67,13 @@ export class ExpenseCardComponent {
     const newExpense = this.expense.id === 0;
     this.service.create(this.expense).subscribe(response => {
       this.expense = response;
-      this.onNewExpense.emit(this.expense);
       this.toggleEdit();
       this.isLoadingExpense = false;
       if(newExpense){
+        this.onNewExpense.emit(this.expense);
         this.expense = new ExpenseModel(-1, '', 0, new Date())
+      } else {
+        this.onEditExpense.emit(this.expense)
       }
     })
   }
