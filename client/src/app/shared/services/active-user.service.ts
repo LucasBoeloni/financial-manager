@@ -19,7 +19,11 @@ export class ActiveUserService {
   private get activeUser(): UserModel | null {
     const user = localStorage.getItem(USER);
     if (!!user) {
-      return JSON.parse(user) as UserModel;
+      const userModel: UserModel = JSON.parse(user) as UserModel;
+      if(userModel.system === 'sgf'){
+        return userModel;
+      }
+      return null;
     }
     return null;
   }

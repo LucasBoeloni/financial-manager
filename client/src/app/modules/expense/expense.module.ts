@@ -5,13 +5,15 @@ import {SharedModule} from "../../shared/shared.module";
 import {ExpenseRoutingModule} from "./expense-routing.module";
 import {ExpenseCardComponent} from "./expense-list/expense-card/expense-card.component";
 import {ExpenseListComponent} from "./expense-list/expense-list.component";
+import {MonthlyExpenseFormComponent} from "./expense-list/monthly-expense-form/monthly-expense-form.component";
 
 
 @NgModule({
   declarations: [
     MonthYearExpenseComponent,
     ExpenseCardComponent,
-    ExpenseListComponent
+    ExpenseListComponent,
+    MonthlyExpenseFormComponent
   ],
   imports: [
     SharedModule,
@@ -21,7 +23,8 @@ import {ExpenseListComponent} from "./expense-list/expense-list.component";
   exports: [
     MonthYearExpenseComponent,
     ExpenseCardComponent,
-    ExpenseListComponent
+    ExpenseListComponent,
+    MonthlyExpenseFormComponent
   ]
 })
 export class ExpenseModule {

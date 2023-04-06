@@ -13,8 +13,8 @@
     <h3 *ngIf="!loadingExpenses" >Amount : {{this.data.amount}}</h3>
   </div>
   <div class="text-base sm:text-base md:text-right lg:text-right xl:text-right col-12 sm:col-12 md:col-4 lg:col-4 xl:col-4">
-    <p-button class="recurrente-expense-button" label="New Recurrent Expense" icon="pi pi-plus"></p-button>
-    <p-button class="recurrente-expense-button" label="See my Recurrent Expenses" icon="pi pi-eye"></p-button>
+    <p-button class="monthly-expense-button" (onClick)="openMonthlyExpense()" label="New monthly expense" icon="pi pi-plus"></p-button>
+    <p-button class="monthly-expense-button" label="See my monthly Expenses" icon="pi pi-eye"></p-button>
   </div>
 </div>
 
@@ -24,3 +24,5 @@
   </div>
   <expense-list (onEditExpense)="refreshData()" (onNewExpense)="addAndRearrangeExpenses($event)" (onDeleteExpense)="removeAndRearrangeExpenses($event)" [expenses]="expenses"></expense-list>
 </div>
+
+<monthly-expense-form [(visible)]="monthlyExpenseVisible" ></monthly-expense-form>

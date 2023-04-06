@@ -27,6 +27,8 @@ export class MonthYearExpenseComponent implements OnInit {
 
   currency: string = 'BRL';
 
+  monthlyExpenseVisible: boolean = false;
+
   constructor(
     private service: MonthYearService,
     private expenseService: ExpenseService
@@ -42,6 +44,10 @@ export class MonthYearExpenseComponent implements OnInit {
   private setMonthYearAndFind() {
     SelectedMonthYearService.getInstance().setMonthYear(this.selectedMonthYear);
     this.getExpenses()
+  }
+
+  openMonthlyExpense(){
+    this.monthlyExpenseVisible = true;
   }
 
   ngOnInit(): void {

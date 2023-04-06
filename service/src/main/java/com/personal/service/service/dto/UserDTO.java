@@ -27,6 +27,8 @@ public class UserDTO implements Serializable {
 
 	private Boolean active = true;
 
+	private String system = "sgf";
+
 	public UserDTO(User user) {
 		this.id = user.getId();
 		this.name = user.getName();

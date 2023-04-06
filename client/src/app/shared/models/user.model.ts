@@ -12,7 +12,9 @@ export class UserModel {
 
   public email: string;
 
-  public active: boolean = true
+  public active: boolean = true;
+
+  public system: string = "sgf";
 
   constructor() {
   }

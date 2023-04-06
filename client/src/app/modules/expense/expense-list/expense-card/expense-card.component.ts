@@ -25,6 +25,8 @@ export class ExpenseCardComponent {
 
   isLoadingExpense: boolean = false;
 
+  initialEditExpenseValue: ExpenseModel;
+
   constructor(
     private service: ExpenseService
   ) {
@@ -33,6 +35,7 @@ export class ExpenseCardComponent {
   toggleEdit(): void {
     this.editing = !this.editing;
     if(this.editing){
+      this.initialEditExpenseValue =  Object.assign({},this.expense);
       this.expense.date = moment(this.expense.date).toDate();
     }
   }
@@ -56,6 +59,7 @@ export class ExpenseCardComponent {
 
   cancel(): void {
     this.editing = false;
+    this.expense = this.initialEditExpenseValue;
     if (this.expense.id === 0) {
       this.expense.id = -1;
     }
