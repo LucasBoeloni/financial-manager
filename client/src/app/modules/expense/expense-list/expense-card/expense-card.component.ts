@@ -40,8 +40,10 @@ export class ExpenseCardComponent {
     }
   }
 
+  private readonly JOKER_ID = -1;
+
   isNewExpense(): boolean {
-    return this.expense.id === -1;
+    return this.expense.id === this.JOKER_ID;
   }
 
   isCreatingNewExpense(): boolean {
@@ -61,7 +63,7 @@ export class ExpenseCardComponent {
     this.editing = false;
     this.expense = this.initialEditExpenseValue;
     if (this.expense.id === 0) {
-      this.expense.id = -1;
+      this.expense.id = this.JOKER_ID;
     }
   }
 
@@ -75,7 +77,7 @@ export class ExpenseCardComponent {
       this.isLoadingExpense = false;
       if(newExpense){
         this.onNewExpense.emit(this.expense);
-        this.expense = new ExpenseModel(-1, '', 0, new Date())
+        this.expense = new ExpenseModel(this.JOKER_ID, '', null, new Date())
       } else {
         this.onEditExpense.emit(this.expense)
       }
