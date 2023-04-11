@@ -52,6 +52,7 @@ export class ExpenseCardComponent {
 
   createNewExpense(): void {
     this.editing = true;
+    this.initialEditExpenseValue =  Object.assign({},this.expense);
     this.expense.id = 0;
   }
 
