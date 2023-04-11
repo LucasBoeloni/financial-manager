@@ -21,8 +21,9 @@ export abstract class GenericService {
     return this.httpClient.get<T>(`${this.resourceUrl}/${id}`,{params: this.standardParams})
   }
 
-  public findAll<T>(): Observable<Page<T>> {
-    return this.httpClient.get<Page<T>>(this.resourceUrl, {params: this.standardParams})
+  public findAll<T>(event: any): Observable<Page<T>> {
+    const param = this.standardParams.set('Pageable',JSON.stringify(event))
+    return this.httpClient.get<Page<T>>(this.resourceUrl, {params: param})
   }
 
   public findAllList<T>(): Observable<T[]> {

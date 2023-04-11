@@ -1,0 +1,57 @@
+<div class="p-card header-monthly-expense text-right">
+  <p-button class="monthly-expense-button" (onClick)="goToExpenses()" label="Go back to expenses"
+            icon="pi pi-arrow-left"></p-button>
+</div>
+
+<div class="p-card">
+  <p-table
+    (onLazyLoad)="getMonthlyExpenses($event)"
+    [lazy]="true"
+    [columns]="cols"
+    [paginator]="true"
+    [showLoader]="loader"
+    [value]="monthlyExpenses"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    dataKey="id"
+    editMode="row">
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns">
+          {{ col.header }}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr [pEditableRow]="monthlyExpense" >
+        <td *ngFor="let col of columns">
+<!--          <p-cellEditor>-->
+<!--            <ng-template pTemplate="input">-->
+<!--              <input pInputText type="text" [(ngModel)]="monthlyExpense.name">-->
+<!--            </ng-template>-->
+<!--            <ng-template pTemplate="output">-->
+<!--              {{monthlyExpense.name}}-->
+<!--            </ng-template>-->
+<!--          </p-cellEditor>-->
+          <ng-container *ngIf="col.field === 'name' " >
+            {{ rowData[col.field] }}
+          </ng-container>
+          <ng-container *ngIf="col.field === 'value' " >
+            {{ rowData[col.field] | currency: currency }}
+          </ng-container>
+          <ng-container *ngIf="col.field === 'startDate' " >
+            {{ rowData[col.field] | date: dateFormat }}
+          </ng-container>
+          <ng-container *ngIf="col.field === 'endDate' " >
+            {{ rowData[col.field] | date: dateFormat }}
+          </ng-container>
+          <ng-container *ngIf="col.field === 'day' " >
+            {{ rowData[col.field] }}
+          </ng-container>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

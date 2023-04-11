@@ -6,6 +6,7 @@ import {ExpenseRoutingModule} from "./expense-routing.module";
 import {ExpenseCardComponent} from "./month-year-expense/expense-list/expense-card/expense-card.component";
 import {ExpenseListComponent} from "./month-year-expense/expense-list/expense-list.component";
 import {MonthlyExpenseFormComponent} from "./month-year-expense/monthly-expense-form/monthly-expense-form.component";
+import {MonthlyExpenseListComponent} from "./month-year-expense/monthly-expense-list/monthly-expense-list.component";
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {MonthlyExpenseFormComponent} from "./month-year-expense/monthly-expense-
     MonthYearExpenseComponent,
     ExpenseCardComponent,
     ExpenseListComponent,
-    MonthlyExpenseFormComponent
+    MonthlyExpenseFormComponent,
+    MonthlyExpenseListComponent
   ],
   imports: [
     SharedModule,

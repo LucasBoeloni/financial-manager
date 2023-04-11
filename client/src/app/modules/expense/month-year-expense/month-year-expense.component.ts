@@ -6,6 +6,8 @@ import {MonthStringUtil} from "../../../shared/utils/month-string-util";
 import {SelectedMonthYearService} from "../../../shared/services/selected-month-year.service";
 import {ExpenseService} from "../service/expense.service";
 import {DataExpenseModel} from "../models/data-expense.model";
+import {RouteNames} from "../../../rout-enum";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -31,8 +33,9 @@ export class MonthYearExpenseComponent implements OnInit {
 
   constructor(
     private service: MonthYearService,
-    private expenseService: ExpenseService
-) {
+    private expenseService: ExpenseService,
+    private router: Router,
+  ) {
   }
 
   public onMonthYearChange(event: any): void {
@@ -104,6 +107,10 @@ export class MonthYearExpenseComponent implements OnInit {
       .reduce((accumulator, currentValue) => accumulator + currentValue, initialValue);
     this.data.amount = this.expenses.length;
     this.data.total = total;
+  }
+
+  goToMonthlyExpenseView(){
+    this.router.navigateByUrl(RouteNames.MONTHLY_EXPENSE);
   }
 
 }
