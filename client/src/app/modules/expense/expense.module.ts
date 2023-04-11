@@ -3,9 +3,9 @@ import {CommonModule} from '@angular/common';
 import {MonthYearExpenseComponent} from './month-year-expense/month-year-expense.component';
 import {SharedModule} from "../../shared/shared.module";
 import {ExpenseRoutingModule} from "./expense-routing.module";
-import {ExpenseCardComponent} from "./expense-list/expense-card/expense-card.component";
-import {ExpenseListComponent} from "./expense-list/expense-list.component";
-import {MonthlyExpenseFormComponent} from "./expense-list/monthly-expense-form/monthly-expense-form.component";
+import {ExpenseCardComponent} from "./month-year-expense/expense-list/expense-card/expense-card.component";
+import {ExpenseListComponent} from "./month-year-expense/expense-list/expense-list.component";
+import {MonthlyExpenseFormComponent} from "./month-year-expense/monthly-expense-form/monthly-expense-form.component";
 
 
 @NgModule({

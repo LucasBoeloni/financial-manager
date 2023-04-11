@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ExpenseModel} from "../models/expense.model";
+import {ExpenseModel} from "../../models/expense.model";
 
 @Component({
   selector: 'expense-list',
