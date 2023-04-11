@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ExpenseService} from "../../service/expense.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {MonthlyExpenseService} from "../../service/monthly-expense.service";
 
 
 @Component({
@@ -12,12 +13,13 @@ export class MonthlyExpenseFormComponent implements OnInit{
 
   @Input() visible: boolean = false;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Input() currency: string = 'BRL';
 
   form: FormGroup = new FormBuilder().group({});
   formBuilder: FormBuilder = new FormBuilder();
 
   constructor(
-    private service: ExpenseService
+    private service: MonthlyExpenseService
   ) {
   }
 
@@ -32,13 +34,21 @@ export class MonthlyExpenseFormComponent implements OnInit{
       name: [null, [Validators.required]],
       startDate: [null, [Validators.required]],
       endDate: [null],
-      day: [null, [Validators.required]],
+      day: [this.days[0], [Validators.required]],
+      value: [null, [Validators.required]],
     })
   }
 
   onClose() {
+    this.buildEmptyForm();
     this.visible = false;
     this.visibleChange.emit(this.visible)
+  }
+
+  onSave(){
+    if(this.form.valid){
+      this.service.create(this.form.getRawValue()).subscribe(() => this.onClose())
+    }
   }
 
 }

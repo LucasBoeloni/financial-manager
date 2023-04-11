@@ -11,5 +11,6 @@
 	<include file="db/changelog/202330031440_creating_month_year_table.xml" relativeToChangelogFile="false"/>
 	<include file="db/changelog/202330031500_creating_month_year_expense_table.xml" relativeToChangelogFile="false"/>
 	<include file="db/changelog/202304031324_adding_active_column_expense.xml" relativeToChangelogFile="false"/>
+	<include file="db/changelog/202304111432_adding_active_column_monthly_expense.xml" relativeToChangelogFile="false"/>
 
 </databaseChangeLog>

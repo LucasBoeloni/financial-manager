@@ -1,4 +1,4 @@
-<sgf-modal-form header="New monthly Expense" (onClose)="onClose()" [(visible)]="visible">
+<sgf-modal-form header="New monthly Expense" (onClose)="onClose()" (onSave)="onSave()" [(visible)]="visible">
   <form [formGroup]="form" >
     <div class="grid div-monthly col-12">
       <div class="col-6">
@@ -11,13 +11,20 @@
       </div>
       <div class="col-6">
         <span>Until:</span>
-        <p-calendar formControlName="endDate" [showIcon]="true" dateFormat="mm/yy"  aria-describedby="end-help" [readonlyInput]="true" view="month" styleClass="col-12" appendTo="body"/>
-        <small id="end-help">leave it empty for undetermined end</small>
+        <p-calendar formControlName="endDate" [showButtonBar]="true" [showIcon]="true" dateFormat="mm/yy"  aria-describedby="end-help" [readonlyInput]="true" view="month" styleClass="col-12" appendTo="body"/>
+        <small id="end-help">Leave it empty for undetermined end</small>
       </div>
+      <div class="col-6 grid" >
+        <div class="col-6">
+          <label for="value">Price : </label>
+          <p-inputNumber styleClass="monthly-expense-price col-12" formControlName="value" mode="currency" [currency]="currency" id="value"></p-inputNumber>
+        </div>
         <div class="col-6 align-self-center">
           <span>Day:</span>
           <p-dropdown formControlName="day" [options]="days" appendTo="body"/>
         </div>
+      </div>
+
     </div>
   </form>
 </sgf-modal-form>

@@ -9,7 +9,7 @@ import {ExpenseModel} from "../models/expense.model";
 export class ExpenseListComponent implements OnInit {
 
   @Input() expenses: ExpenseModel[] = [];
-  newExpense = new ExpenseModel(-1, '', 0, new Date());
+  newExpense = new ExpenseModel(-1, '', null, new Date());
   @Output() onNewExpense: EventEmitter<ExpenseModel> = new EventEmitter<ExpenseModel>();
   @Output() onDeleteExpense: EventEmitter<ExpenseModel> = new EventEmitter<ExpenseModel>();
   @Output() onEditExpense: EventEmitter<ExpenseModel> = new EventEmitter<ExpenseModel>();

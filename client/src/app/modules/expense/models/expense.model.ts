@@ -6,7 +6,7 @@ export class ExpenseModel {
   constructor(
     public id: number,
     public name: string,
-    public value: number,
+    public value: number | null,
     public date: Date,
     public monthYear: number | null = SelectedMonthYearService.getInstance().getMonthYear()?.value,
     public user: UserModel | null = ActiveUserService.getInstance().getUser()
