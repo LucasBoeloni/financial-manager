@@ -1,11 +1,46 @@
-.visible-sideBar .p-sidebar {
-  transition: width 0.2s;
-  width: var(--sidebar-width-expanded);
-}
+@media screen and (min-width: 0px) {
+  .visible-sideBar .p-sidebar {
+    transition: width 0.2s;
+    width: 12%;
+  }
 
-.hidden-sideBar .p-sidebar {
-  transition: width 0.2s;
-  width: var(--sidebar-width-collapsed);
+  .hidden-sideBar .p-sidebar {
+    transition: width 0.2s;
+    width: 5%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .visible-sideBar .p-sidebar {
+    transition: width 0.2s;
+    width: 12%;
+  }
+
+  .hidden-sideBar .p-sidebar {
+    transition: width 0.2s;
+    width: 2.8%;
+  }
+}
+@media screen and (min-width: 992px) {
+  .visible-sideBar .p-sidebar {
+    transition: width 0.2s;
+    width: 12%;
+  }
+
+  .hidden-sideBar .p-sidebar {
+    transition: width 0.2s;
+    width: 2.8%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .visible-sideBar .p-sidebar {
+    transition: width 0.2s;
+    width: 12%;
+  }
+
+  .hidden-sideBar .p-sidebar {
+    transition: width 0.2s;
+    width: 2.8%;
+  }
 }
 
 .p-sidebar-header {

@@ -9,7 +9,7 @@
 .sidebar-header {
   --main-padding-thickness: 0.5vw;
 
-  font-size: calc(var(--sidebar-width-collapsed) - var(--main-padding-thickness) * 2);
+  font-size: 200%;
   margin: 0;
   height: 1.5em;
   padding: var(--main-padding-thickness);
@@ -18,7 +18,7 @@
 
 .sideBarMenuItem {
   display: block;
-  font-size: 1vw;
+  font-size: 100%;
   margin: 0;
   padding: 0.5rem;
   text-decoration: none;
