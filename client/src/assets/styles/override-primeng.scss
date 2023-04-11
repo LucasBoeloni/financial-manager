@@ -25,6 +25,15 @@
 .monthly-expense-button button{
   margin: 1vh;
 }
-.monthly-expense-price input {
-  width: 100%
+.monthly-expense-price span {
+  input {
+    width:100%;
+  }
+  width: 100%;
+}
+
+.dropdown-day div{
+  margin: 0.5rem;
+  margin-left: 0;
+  width: 100%;
 }

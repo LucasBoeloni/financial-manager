@@ -3,28 +3,27 @@
     <div class="grid div-monthly col-12">
       <div class="col-6">
         <span >Name:</span>
-        <input formControlName="name" class="col-12" pInputText/>
+        <input formControlName="name" class="col-12 input-name" pInputText/>
       </div>
       <div class="col-6">
-        <span>Start in:</span>
-        <p-calendar formControlName="startDate" [showIcon]="true" dateFormat="mm/yy" [readonlyInput]="true" view="month" styleClass="col-12" appendTo="body"/>
+        <label for="value">Price: </label>
+        <p-inputNumber class="monthly-expense-price col-12" formControlName="value" mode="currency" [currency]="currency" id="value"></p-inputNumber>
       </div>
-      <div class="col-6">
-        <span>Until:</span>
-        <p-calendar formControlName="endDate" [showButtonBar]="true" [showIcon]="true" dateFormat="mm/yy"  aria-describedby="end-help" [readonlyInput]="true" view="month" styleClass="col-12" appendTo="body"/>
-        <small id="end-help">Leave it empty for undetermined end</small>
-      </div>
-      <div class="col-6 grid" >
-        <div class="col-6">
-          <label for="value">Price : </label>
-          <p-inputNumber styleClass="monthly-expense-price col-12" formControlName="value" mode="currency" [currency]="currency" id="value"></p-inputNumber>
+      <div class="col-12 grid">
+        <div class="col-4">
+          <span>Start in:</span>
+          <p-calendar formControlName="startDate" [touchUI]="true" [showIcon]="true" dateFormat="mm/yy" [readonlyInput]="true" view="month" styleClass="col-12" appendTo="body"/>
         </div>
-        <div class="col-6 align-self-center">
+        <div class="col-4">
+          <span>Until:</span>
+          <p-calendar formControlName="endDate" [touchUI]="true" [showButtonBar]="true" [showIcon]="true" dateFormat="mm/yy"  aria-describedby="end-help" [readonlyInput]="true" view="month" styleClass="col-12" appendTo="body"/>
+          <small id="end-help">Leave it empty for undetermined end</small>
+        </div>
+        <div class="col-4">
           <span>Day:</span>
-          <p-dropdown formControlName="day" [options]="days" appendTo="body"/>
+          <p-dropdown class="dropdown-day" formControlName="day" [options]="days" appendTo="body"/>
         </div>
       </div>
-
     </div>
   </form>
 </sgf-modal-form>
