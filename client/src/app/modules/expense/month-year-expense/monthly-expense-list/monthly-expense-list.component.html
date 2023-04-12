@@ -11,10 +11,11 @@
     [paginator]="true"
     [showLoader]="loader"
     [value]="monthlyExpenses"
-    [rows]="5"
+    [rows]="rowsPerPage[0]"
+    [totalRecords]="totalRecords"
     [showCurrentPageReport]="true"
     [tableStyle]="{ 'min-width': '50rem' }"
-    [rowsPerPageOptions]="[10, 25, 50]"
+    [rowsPerPageOptions]="rowsPerPage"
     dataKey="id"
     editMode="row">
     <ng-template pTemplate="header" let-columns>

@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {RouteNames} from "../../../../rout-enum";
+import {RouteNames} from "../../../../shared/utils/rout-enum";
 import {Router} from "@angular/router";
 import {MonthlyExpenseService} from "../../service/monthly-expense.service";
+import {TableEnum} from "../../../../shared/utils/table-enum";
 
 
 @Component({
@@ -16,6 +17,10 @@ export class MonthlyExpenseListComponent implements OnInit{
   dateFormat: string = 'MM/yyyy';
 
   monthlyExpense: any;
+
+  rowsPerPage = TableEnum.ROWS_PER_PAGE;
+
+  totalRecords: number;
 
   constructor(
     private router: Router,
@@ -44,6 +49,7 @@ export class MonthlyExpenseListComponent implements OnInit{
     this.loader = true;
     this.service.findAll(event).subscribe(res => {
       this.monthlyExpenses = res.content;
+      this.totalRecords = res.totalElements;
     })
   }
 

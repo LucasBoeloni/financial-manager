@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ActiveUserService} from "../../../shared/services/active-user.service";
 import {UserModel} from "../../../shared/models/user.model";
-import {RouteNames} from "../../../rout-enum";
+import {RouteNames} from "../../../shared/utils/rout-enum";
 import {UserService} from "../../user/services/user.service";
 
 @Component({

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SideBarMenuItem} from "./shared/component/side-bar/models/sideBarMenuItem";
 import {NavigationEnd, Router} from "@angular/router";
 import {ActiveUserService} from "./shared/services/active-user.service";
-import {RouteNames} from "./rout-enum";
+import {RouteNames} from "./shared/utils/rout-enum";
 
 @Component({
   selector: 'app-root',

@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {RouteNames} from "./rout-enum";
+import {RouteNames} from "./shared/utils/rout-enum";
 import {LoginModule} from "./modules/login/login.module";
 import {DashboardModule} from "./modules/dashboard/dashboard.module";
 import {ExpenseModule} from "./modules/expense/expense.module";
