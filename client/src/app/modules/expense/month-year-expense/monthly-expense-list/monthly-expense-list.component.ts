@@ -25,6 +25,8 @@ export class MonthlyExpenseListComponent implements OnInit{
 
   totalRecords: number;
 
+  monthlyExpenseVisible: boolean = false;
+
   constructor(
     private router: Router,
     private service: MonthlyExpenseService
@@ -78,6 +80,10 @@ export class MonthlyExpenseListComponent implements OnInit{
 
   onRowEditCancel(value: any, index: number){
     this.monthlyExpenses[index] = this.monthlyExpenseEdit
+  }
+
+  openMonthlyExpense(){
+    this.monthlyExpenseVisible = true;
   }
 
 }

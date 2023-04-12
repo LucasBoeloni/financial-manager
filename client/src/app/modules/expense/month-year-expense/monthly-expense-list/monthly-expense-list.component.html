@@ -1,4 +1,5 @@
 <div class="p-card header-monthly-expense text-right">
+  <p-button class="monthly-expense-button" (onClick)="openMonthlyExpense()" label="New monthly expense" icon="pi pi-plus"></p-button>
   <p-button class="monthly-expense-button" (onClick)="goToExpenses()" label="Go back to expenses"
             icon="pi pi-arrow-left"></p-button>
 </div>
@@ -84,3 +85,6 @@
     </ng-template>
   </p-table>
 </div>
+
+<monthly-expense-form [(visible)]="monthlyExpenseVisible" ></monthly-expense-form>
+
