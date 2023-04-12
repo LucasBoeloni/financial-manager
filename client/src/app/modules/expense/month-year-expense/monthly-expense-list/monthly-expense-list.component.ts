@@ -3,6 +3,7 @@ import {RouteNames} from "../../../../shared/utils/rout-enum";
 import {Router} from "@angular/router";
 import {MonthlyExpenseService} from "../../service/monthly-expense.service";
 import {TableEnum} from "../../../../shared/utils/table-enum";
+import * as moment from "moment";
 
 
 @Component({
@@ -16,7 +17,9 @@ export class MonthlyExpenseListComponent implements OnInit{
   @Input() currency: string = 'BRL';
   dateFormat: string = 'MM/yyyy';
 
-  monthlyExpense: any;
+  monthlyExpenseEdit: any;
+
+  days: number[] = Array.from({length: 25}, (_, i) => i + 1)
 
   rowsPerPage = TableEnum.ROWS_PER_PAGE;
 
@@ -55,6 +58,26 @@ export class MonthlyExpenseListComponent implements OnInit{
 
   goToExpenses(){
     this.router.navigateByUrl(RouteNames.EXPENSE);
+  }
+
+  onRowEditInit(value: any, index: number){
+    this.monthlyExpenseEdit = Object.assign({},value);
+    this.monthlyExpenses[index].startDate = moment(this.monthlyExpenses[index].startDate).toDate();
+    this.monthlyExpenses[index].endDate = moment(this.monthlyExpenses[index].endDate).toDate();
+  }
+
+  onRowEditSave(value: any, index: number){
+    this.service.update(value).subscribe(() => {},(error) => this.onRowEditCancel(value, index))
+  }
+
+  onRowDelete(value: any, index: number){
+    this.service.delete(value.id).subscribe(() => {
+      this.monthlyExpenses.splice(index,1);
+    })
+  }
+
+  onRowEditCancel(value: any, index: number){
+    this.monthlyExpenses[index] = this.monthlyExpenseEdit
   }
 
 }

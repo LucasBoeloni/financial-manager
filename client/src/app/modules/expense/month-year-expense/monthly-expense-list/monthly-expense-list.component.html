@@ -19,38 +19,66 @@
     dataKey="id"
     editMode="row">
     <ng-template pTemplate="header" let-columns>
-      <tr>
-        <th *ngFor="let col of columns">
+      <tr class="col-12" >
+        <th class="col-2" *ngFor="let col of columns">
           {{ col.header }}
+        </th>
+        <th class="col-2 text-center " >
+          Actions
         </th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-      <tr [pEditableRow]="monthlyExpense" >
-        <td *ngFor="let col of columns">
-<!--          <p-cellEditor>-->
-<!--            <ng-template pTemplate="input">-->
-<!--              <input pInputText type="text" [(ngModel)]="monthlyExpense.name">-->
-<!--            </ng-template>-->
-<!--            <ng-template pTemplate="output">-->
-<!--              {{monthlyExpense.name}}-->
-<!--            </ng-template>-->
-<!--          </p-cellEditor>-->
-          <ng-container *ngIf="col.field === 'name' " >
-            {{ rowData[col.field] }}
-          </ng-container>
-          <ng-container *ngIf="col.field === 'value' " >
-            {{ rowData[col.field] | currency: currency }}
-          </ng-container>
-          <ng-container *ngIf="col.field === 'startDate' " >
-            {{ rowData[col.field] | date: dateFormat }}
-          </ng-container>
-          <ng-container *ngIf="col.field === 'endDate' " >
-            {{ rowData[col.field] | date: dateFormat }}
-          </ng-container>
-          <ng-container *ngIf="col.field === 'day' " >
-            {{ rowData[col.field] }}
-          </ng-container>
+    <ng-template pTemplate="body" let-editing="editing" let-ri="rowIndex" let-rowData let-columns="columns">
+      <tr class="col-12" [pEditableRow]="rowData" >
+        <td *ngFor="let col of columns" class="col-2" >
+          <p-cellEditor *ngIf="col.field === 'name' " >
+            <ng-template pTemplate="input">
+              <input [(ngModel)]="rowData[col.field]" class="col-12 input-name" pInputText/>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{rowData[col.field]}}
+            </ng-template>
+          </p-cellEditor>
+          <p-cellEditor *ngIf="col.field === 'value' " >
+            <ng-template pTemplate="input">
+              <p-inputNumber [(ngModel)]="rowData[col.field]" class="monthly-expense-price col-12" mode="currency" [currency]="currency" id="value"></p-inputNumber>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ rowData[col.field] | currency: currency }}
+            </ng-template>
+          </p-cellEditor>
+          <p-cellEditor *ngIf="col.field === 'startDate' " >
+            <ng-template pTemplate="input">
+              <p-calendar [disabled]="true" [(ngModel)]="rowData[col.field]" [touchUI]="true" [showButtonBar]="true" [showIcon]="true" dateFormat="mm/yy" [readonlyInput]="true" view="month" styleClass="col-12" appendTo="body"/>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ rowData[col.field] | date: dateFormat }}
+            </ng-template>
+          </p-cellEditor>
+          <p-cellEditor *ngIf="col.field === 'endDate' " >
+            <ng-template pTemplate="input">
+              <p-calendar [(ngModel)]="rowData[col.field]" [touchUI]="true" [showButtonBar]="true" [showIcon]="true" dateFormat="mm/yy" [readonlyInput]="true" view="month" styleClass="col-12" appendTo="body"/>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ rowData[col.field] | date: dateFormat }}
+            </ng-template>
+          </p-cellEditor>
+          <p-cellEditor *ngIf="col.field === 'day' " >
+            <ng-template pTemplate="input">
+              <p-dropdown class="dropdown-day" [(ngModel)]="rowData[col.field]" [options]="days" appendTo="body"/>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ rowData[col.field] }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td class="col-2" >
+          <div class="flex align-items-center justify-content-center gap-2">
+            <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(rowData, ri)" class="p-button-rounded p-button-text"></button>
+            <button *ngIf="!editing" pButton pRipple type="button" icon="pi pi-trash" (click)="onRowDelete(rowData, ri)" class="p-button-rounded p-button-text"></button>
+            <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(rowData, ri)" class="p-button-rounded p-button-text mr-2"></button>
+            <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(rowData, ri)" class="p-button-rounded p-button-text"></button>
+          </div>
         </td>
       </tr>
     </ng-template>
