@@ -11,6 +11,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @Repository
 public interface MonthlyExpenseRepository extends JpaRepository<MonthlyExpense, Long> {
 	@Modifying
@@ -20,5 +23,9 @@ public interface MonthlyExpenseRepository extends JpaRepository<MonthlyExpense, 
 
 	@Query("select new com.personal.service.service.dto.MonthlyExpenseDTO(e) from MonthlyExpense e where e.user.id = :userId and e.active = true")
 	Page<MonthlyExpenseDTO> getAllByUser(@Param("userId") Long userId, Pageable pageable);
+
+	@Query("select new com.personal.service.service.dto.MonthlyExpenseDTO(e) from MonthlyExpense e where e.user.id = :userId and e.active = true " +
+			"and ((:date between e.startDate and e.endDate) or (:date >= e.startDate and e.endDate is null)) ")
+	List<MonthlyExpenseDTO> getAllByUserAndDate(@Param("userId") Long userId,@Param("date") LocalDate date);
 
 }

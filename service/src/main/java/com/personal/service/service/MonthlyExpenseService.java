@@ -1,5 +1,6 @@
 package com.personal.service.service;
 
+import com.personal.service.domain.MonthYear;
 import com.personal.service.domain.MonthlyExpense;
 import com.personal.service.repository.MonthlyExpenseRepository;
 import com.personal.service.service.dto.MonthlyExpenseDTO;
@@ -43,6 +44,10 @@ public class MonthlyExpenseService {
 
 	public void deativateActive(Long id) {
 		repository.deactivateExpense(id);
+	}
+
+	public void saveFromNewMonthYear(MonthYear monthYear, Long userId){
+		repository.getAllByUserAndDate(userId, monthYear.getDate());
 	}
 
 }
