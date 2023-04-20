@@ -13,6 +13,7 @@ export class MonthlyExpenseFormComponent implements OnInit{
   @Input() visible: boolean = false;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() currency: string = 'BRL';
+  @Output() onSave: EventEmitter<any> = new EventEmitter<any>();
 
   form: FormGroup = new FormBuilder().group({});
   formBuilder: FormBuilder = new FormBuilder();
@@ -46,9 +47,12 @@ export class MonthlyExpenseFormComponent implements OnInit{
     this.visibleChange.emit(this.visible)
   }
 
-  onSave(){
+  save(){
     if(this.form.valid){
-      this.service.create(this.form.getRawValue()).subscribe(() => this.onClose())
+      this.service.create(this.form.getRawValue()).subscribe(res => {
+        this.onSave.emit(res);
+        this.onClose()
+      })
     }
   }
 

@@ -91,5 +91,5 @@
   </p-table>
 </div>
 
-<monthly-expense-form [(visible)]="monthlyExpenseVisible" ></monthly-expense-form>
+<monthly-expense-form (onSave)="pushNewExpense($event)" [(visible)]="monthlyExpenseVisible" ></monthly-expense-form>
 

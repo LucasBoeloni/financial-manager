@@ -88,4 +88,10 @@ export class MonthlyExpenseListComponent implements OnInit{
     this.monthlyExpenseVisible = true;
   }
 
+  pushNewExpense(newMonthlyExpense: any){
+    const aux = this.monthlyExpenses;
+    aux.push(newMonthlyExpense);
+    this.monthlyExpenses = aux;
+  }
+
 }
