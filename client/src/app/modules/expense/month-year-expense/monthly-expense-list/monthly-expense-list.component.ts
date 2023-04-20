@@ -68,7 +68,9 @@ export class MonthlyExpenseListComponent implements OnInit{
   onRowEditInit(value: MonthlyExpenseModel, index: number){
     this.monthlyExpenseEdit = Object.assign({},value);
     this.monthlyExpenses[index].startDate = moment(this.monthlyExpenses[index].startDate).toDate();
-    this.monthlyExpenses[index].endDate = moment(this.monthlyExpenses[index].endDate).toDate();
+    if(!!this.monthlyExpenses[index].endDate){
+      this.monthlyExpenses[index].endDate = moment(this.monthlyExpenses[index].endDate).toDate();
+    }
   }
 
   onRowEditSave(value: MonthlyExpenseModel, index: number){
