@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MonthlyExpenseService} from "../../service/monthly-expense.service";
+import {MonthlyExpenseModel} from "../../models/monthly-expense.model";
 
 
 @Component({
@@ -13,7 +14,7 @@ export class MonthlyExpenseFormComponent implements OnInit{
   @Input() visible: boolean = false;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() currency: string = 'BRL';
-  @Output() onSave: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onSave: EventEmitter<MonthlyExpenseModel> = new EventEmitter<MonthlyExpenseModel>();
 
   form: FormGroup = new FormBuilder().group({});
   formBuilder: FormBuilder = new FormBuilder();

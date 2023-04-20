@@ -12,12 +12,14 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import javax.ws.rs.BadRequestException;
+import java.util.Objects;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class MonthlyExpenseService {
 
+	public static final int FIRST_DAY_OF_MONTH = 1;
 	private final MonthlyExpenseRepository repository;
 	private final MonthlyExpenseMapper mapper;
 	private final UserService userService;
@@ -32,8 +34,10 @@ public class MonthlyExpenseService {
 
 	public MonthlyExpenseDTO insert(MonthlyExpenseDTO dto, Long userId) {
 		dto.setUser(userService.getById(userId));
-		dto.setStartDate(dto.getStartDate().withDayOfMonth(1));
-		dto.setEndDate(dto.getStartDate().withDayOfMonth(1));
+		dto.setStartDate(dto.getStartDate().withDayOfMonth(FIRST_DAY_OF_MONTH));
+		if(Objects.nonNull(dto.getEndDate())){
+			dto.setEndDate(dto.getEndDate().withDayOfMonth(FIRST_DAY_OF_MONTH));
+		}
 		MonthlyExpense entity = repository.save(mapper.toEntity(dto));
 		return mapper.toDto(entity);
 	}

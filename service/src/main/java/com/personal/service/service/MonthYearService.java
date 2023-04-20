@@ -16,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MonthYearService {
 
+	public static final int FIRST_DAY_OF_MONTH = 1;
 	private final MonthYearRepository repository;
 
 	private final ExpenseService expenseService;
@@ -25,7 +26,7 @@ public class MonthYearService {
 		entity.setUser(new User());
 		entity.getUser().setId(userId);
 		entity.setName(dto.getLabel());
-		entity.setDate(LocalDate.now().withDayOfMonth(1));
+		entity.setDate(LocalDate.now().withDayOfMonth(FIRST_DAY_OF_MONTH));
 
 		entity = repository.save(entity);
 		expenseService.insertBatchForMonthYear(entity, userId);

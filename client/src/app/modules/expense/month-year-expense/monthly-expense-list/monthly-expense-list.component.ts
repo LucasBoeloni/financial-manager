@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {MonthlyExpenseService} from "../../service/monthly-expense.service";
 import {TableEnum} from "../../../../shared/utils/table-enum";
 import * as moment from "moment";
+import {MonthlyExpenseModel} from "../../models/monthly-expense.model";
 
 
 @Component({
@@ -19,7 +20,7 @@ export class MonthlyExpenseListComponent implements OnInit{
 
   readonly ACTION_COLUMN_FIX = 1;
 
-  monthlyExpenseEdit: any;
+  monthlyExpenseEdit: MonthlyExpenseModel;
 
   days: number[] = Array.from({length: 25}, (_, i) => i + 1)
 
@@ -44,7 +45,7 @@ export class MonthlyExpenseListComponent implements OnInit{
     {header: 'Day', field:'day'},
   ];
 
-  monthlyExpenses: any[] = [];
+  monthlyExpenses: MonthlyExpenseModel[] = [];
 
   loader: boolean = true;
 
@@ -54,7 +55,7 @@ export class MonthlyExpenseListComponent implements OnInit{
 
   getMonthlyExpenses(event: any){
     this.loader = true;
-    this.service.findAll(event).subscribe(res => {
+    this.service.findAll<MonthlyExpenseModel>(event).subscribe(res => {
       this.monthlyExpenses = res.content;
       this.totalRecords = res.totalElements;
     })
@@ -64,23 +65,23 @@ export class MonthlyExpenseListComponent implements OnInit{
     this.router.navigateByUrl(RouteNames.EXPENSE);
   }
 
-  onRowEditInit(value: any, index: number){
+  onRowEditInit(value: MonthlyExpenseModel, index: number){
     this.monthlyExpenseEdit = Object.assign({},value);
     this.monthlyExpenses[index].startDate = moment(this.monthlyExpenses[index].startDate).toDate();
     this.monthlyExpenses[index].endDate = moment(this.monthlyExpenses[index].endDate).toDate();
   }
 
-  onRowEditSave(value: any, index: number){
+  onRowEditSave(value: MonthlyExpenseModel, index: number){
     this.service.update(value).subscribe(() => {},(error) => this.onRowEditCancel(value, index))
   }
 
-  onRowDelete(value: any, index: number){
+  onRowDelete(value: MonthlyExpenseModel, index: number){
     this.service.delete(value.id).subscribe(() => {
       this.monthlyExpenses.splice(index,1);
     })
   }
 
-  onRowEditCancel(value: any, index: number){
+  onRowEditCancel(value: MonthlyExpenseModel, index: number){
     this.monthlyExpenses[index] = this.monthlyExpenseEdit
   }
 
@@ -88,8 +89,8 @@ export class MonthlyExpenseListComponent implements OnInit{
     this.monthlyExpenseVisible = true;
   }
 
-  pushNewExpense(newMonthlyExpense: any){
-    const aux = this.monthlyExpenses;
+  pushNewExpense(newMonthlyExpense: MonthlyExpenseModel){
+    const aux: MonthlyExpenseModel[] = this.monthlyExpenses;
     aux.push(newMonthlyExpense);
     this.monthlyExpenses = aux;
   }
