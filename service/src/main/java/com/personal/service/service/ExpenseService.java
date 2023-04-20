@@ -1,6 +1,7 @@
 package com.personal.service.service;
 
 import com.personal.service.domain.Expense;
+import com.personal.service.domain.MonthYear;
 import com.personal.service.domain.MonthYearExpense;
 import com.personal.service.repository.ExpenseRepository;
 import com.personal.service.repository.MonthYearExpenseRepository;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import javax.ws.rs.BadRequestException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -42,6 +44,15 @@ public class ExpenseService {
 		Expense entity = repository.save(mapper.toEntity(dto));
 		monthYearExpenseRepository.save(new MonthYearExpense(entity.getId(),monthYearId,userId));
 		return mapper.toDto(entity);
+	}
+
+	public void insertBatchForMonthYear(MonthYear monthYear, Long userId) {
+		List<Expense> expenses = repository.getAllByUserAndDateFromMonthlyExpense(userId, monthYear.getDate());
+
+		expenses = repository.saveAll(expenses);
+		List<MonthYearExpense> monthYearExpenses = expenses.stream().map(expense -> new MonthYearExpense(expense.getId(), monthYear.getId(), userId))
+				.collect(Collectors.toList());
+		monthYearExpenseRepository.saveAll(monthYearExpenses);
 	}
 
 	public List<ExpenseDTO> getAll(Long monthYearId,Long userId) {

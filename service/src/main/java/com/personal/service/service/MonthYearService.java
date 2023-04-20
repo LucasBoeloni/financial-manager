@@ -18,7 +18,7 @@ public class MonthYearService {
 
 	private final MonthYearRepository repository;
 
-	private final MonthlyExpenseService monthlyExpenseService;
+	private final ExpenseService expenseService;
 
 	public SelectionDTO insert(SelectionDTO dto, Long userId) {
 		MonthYear entity = new MonthYear();
@@ -28,7 +28,7 @@ public class MonthYearService {
 		entity.setDate(LocalDate.now().withDayOfMonth(1));
 
 		entity = repository.save(entity);
-		monthlyExpenseService.saveFromNewMonthYear(entity, userId);
+		expenseService.insertBatchForMonthYear(entity, userId);
 		dto.setValue(entity.getId());
 		return dto;
 	}

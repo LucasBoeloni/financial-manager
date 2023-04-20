@@ -83,6 +83,11 @@
         </td>
       </tr>
     </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td [attr.colspan]="cols.length + ACTION_COLUMN_FIX">No data found.</td>
+      </tr>
+    </ng-template>
   </p-table>
 </div>
 

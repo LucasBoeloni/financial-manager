@@ -12,11 +12,11 @@
       <div class="col-12 grid">
         <div class="col-4">
           <span>Start in:</span>
-          <p-calendar formControlName="startDate" [touchUI]="true" [showIcon]="true" dateFormat="mm/yy" [readonlyInput]="true" view="month" styleClass="col-12" appendTo="body"/>
+          <p-calendar [minDate]="minDate" formControlName="startDate" [touchUI]="true" [showIcon]="true" dateFormat="mm/yy" [readonlyInput]="true" view="month" styleClass="col-12" appendTo="body"/>
         </div>
         <div class="col-4">
           <span>Until:</span>
-          <p-calendar formControlName="endDate" [touchUI]="true" [showButtonBar]="true" [showIcon]="true" dateFormat="mm/yy"  aria-describedby="end-help" [readonlyInput]="true" view="month" styleClass="col-12" appendTo="body"/>
+          <p-calendar [minDate]="minDate" formControlName="endDate" [touchUI]="true" [showButtonBar]="true" [showIcon]="true" dateFormat="mm/yy"  aria-describedby="end-help" [readonlyInput]="true" view="month" styleClass="col-12" appendTo="body"/>
           <small id="end-help">Leave it empty for undetermined end</small>
         </div>
         <div class="col-4">

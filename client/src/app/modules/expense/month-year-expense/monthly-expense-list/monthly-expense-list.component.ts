@@ -17,6 +17,8 @@ export class MonthlyExpenseListComponent implements OnInit{
   @Input() currency: string = 'BRL';
   dateFormat: string = 'MM/yyyy';
 
+  readonly ACTION_COLUMN_FIX = 1;
+
   monthlyExpenseEdit: any;
 
   days: number[] = Array.from({length: 25}, (_, i) => i + 1)

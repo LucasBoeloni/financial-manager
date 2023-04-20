@@ -1,6 +1,7 @@
 package com.personal.service.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.CascadeType;
@@ -21,6 +22,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Table(name = "TB_EXPENSE")
+@NoArgsConstructor
 public class Expense {
 
 	@Id
@@ -45,4 +47,12 @@ public class Expense {
 	@JoinColumn(name = "ID_USER", referencedColumnName = "id")
 	private User user;
 
+
+	public Expense(MonthlyExpense monthlyExpense){
+		this.name = monthlyExpense.getName();
+		this.value = monthlyExpense.getValue();
+		this.date = LocalDate.now().withDayOfMonth(monthlyExpense.getDay());
+		this.user = monthlyExpense.getUser();
+		this.active = monthlyExpense.getActive();
+	}
 }

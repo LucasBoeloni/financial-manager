@@ -17,6 +17,8 @@ export class MonthlyExpenseFormComponent implements OnInit{
   form: FormGroup = new FormBuilder().group({});
   formBuilder: FormBuilder = new FormBuilder();
 
+  minDate = new Date();
+
   constructor(
     private service: MonthlyExpenseService
   ) {
