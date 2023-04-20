@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface MonthYearRepository extends JpaRepository<MonthYear, Long> {
 
-	@Query("SELECT new com.personal.service.service.dto.SelectionDTO(my.name,my.id) from MonthYear my where my.user.id = :userId")
-	public List<SelectionDTO> getAllSelection(@Param("userId") Long userId);
+	@Query("SELECT new com.personal.service.service.dto.SelectionDTO(my.name,my.id) FROM MonthYear my WHERE my.user.id = :userId ORDER BY my.date DESC")
+	List<SelectionDTO> getAllSelection(@Param("userId") Long userId);
 
 }

@@ -18,11 +18,15 @@
   </div>
 </div>
 
-<div class="p-card body-expense">
-  <div *ngIf="loadingExpenses" class="col-12 text-center">
-    <i class="pi pi-spin pi-spinner"></i>
+<p-blockUI [target]="pnl" [blocked]="blockedPanel">
+  <i class="pi pi-lock" style="font-size: 3rem"></i>
+</p-blockUI>
+<p-panel #pnl class="invisible-panel">
+  <div class="p-card body-expense">
+    <div *ngIf="loadingExpenses" class="col-12 text-center">
+      <i class="pi pi-spin pi-spinner"></i>
+    </div>
+    <expense-list (onEditExpense)="refreshData()" (onNewExpense)="addAndRearrangeExpenses($event)" (onDeleteExpense)="removeAndRearrangeExpenses($event)" [expenses]="expenses"></expense-list>
   </div>
-  <expense-list (onEditExpense)="refreshData()" (onNewExpense)="addAndRearrangeExpenses($event)" (onDeleteExpense)="removeAndRearrangeExpenses($event)" [expenses]="expenses"></expense-list>
-</div>
-
+</p-panel>
 <monthly-expense-form [(visible)]="monthlyExpenseVisible" ></monthly-expense-form>

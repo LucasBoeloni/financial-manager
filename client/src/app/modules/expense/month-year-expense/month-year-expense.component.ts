@@ -8,6 +8,7 @@ import {ExpenseService} from "../service/expense.service";
 import {DataExpenseModel} from "../models/data-expense.model";
 import {RouteNames} from "../../../shared/utils/rout-enum";
 import {Router} from "@angular/router";
+import * as moment from "moment";
 
 
 @Component({
@@ -19,7 +20,7 @@ export class MonthYearExpenseComponent implements OnInit {
 
   monthYears: SelectModel[] = [];
 
-  selectedMonthYear: SelectModel;
+  selectedMonthYear: number;
 
   expenses: ExpenseModel[] = [];
 
@@ -38,6 +39,11 @@ export class MonthYearExpenseComponent implements OnInit {
   ) {
   }
 
+  blockedPanel = false;
+  private readonly DIF_THRESHOLD: number = 35;
+
+  private readonly  TODAY: Date = new Date();
+
   public onMonthYearChange(event: any): void {
     if (!!this.selectedMonthYear) {
       this.setMonthYearAndFind();
@@ -45,7 +51,7 @@ export class MonthYearExpenseComponent implements OnInit {
   }
 
   private setMonthYearAndFind() {
-    SelectedMonthYearService.getInstance().setMonthYear(this.selectedMonthYear);
+    SelectedMonthYearService.getInstance().setMonthYear(this.getSelectedMonthYearAsSelect());
     this.getExpenses()
   }
 
@@ -54,7 +60,7 @@ export class MonthYearExpenseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const todayMonthYear: Date = new Date();
+    const todayMonthYear: Date = this.TODAY;
     const todayMonthYearString: string = MonthStringUtil.buildMonthYearString(todayMonthYear);
     this.startPage(todayMonthYearString);
   }
@@ -65,7 +71,9 @@ export class MonthYearExpenseComponent implements OnInit {
       if (!this.monthYears.some(month => month.label === todayMonthYearString)) {
         this.createNewMonthYear(todayMonthYearString);
       } else {
-        this.selectedMonthYear = this.monthYears[this.monthYears.length - 1];
+        if(!this.selectedMonthYear){
+          this.selectedMonthYear = this.monthYears.at(0)?.value;
+        }
         this.setMonthYearAndFind()
       }
     })
@@ -74,7 +82,7 @@ export class MonthYearExpenseComponent implements OnInit {
   private createNewMonthYear(todayMonthYearString: string) {
     this.service.create(new SelectModel(todayMonthYearString, null)).subscribe(response => {
       this.monthYears.push(response);
-      this.selectedMonthYear = response;
+      this.selectedMonthYear = response.value;
       this.setMonthYearAndFind()
     })
   }
@@ -85,7 +93,21 @@ export class MonthYearExpenseComponent implements OnInit {
       this.expenses = response
       this.refreshData();
       this.loadingExpenses = false;
+      if(this.selectedMonthBeforeToday()){
+        this.blockedPanel = true;
+      }else{
+        this.blockedPanel = false;
+      }
     });
+  }
+
+
+  private selectedMonthBeforeToday(): boolean {
+    return moment(this.TODAY).diff(MonthStringUtil.buildMonthYearDate( this.getSelectedMonthYearAsSelect().label),'days') > this.DIF_THRESHOLD;
+  }
+
+  private getSelectedMonthYearAsSelect(): SelectModel {
+    return this.monthYears.find(monthYear => monthYear.value === this.selectedMonthYear) as SelectModel;
   }
 
   public addAndRearrangeExpenses(newExpense: ExpenseModel){
