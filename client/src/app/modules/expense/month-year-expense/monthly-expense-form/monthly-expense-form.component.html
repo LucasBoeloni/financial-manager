@@ -1,27 +1,31 @@
-<sgf-modal-form header="New monthly Expense" (onClose)="onClose()" (onSave)="save()" [(visible)]="visible">
-  <form [formGroup]="form" >
+<sgf-modal-form (onClose)="onClose()" (onSave)="save()" [(visible)]="visible" header="New monthly Expense">
+  <form [formGroup]="form">
     <div class="grid div-monthly col-12">
       <div class="col-6">
-        <span >Name:</span>
-        <input formControlName="name" class="col-12 input-name" pInputText/>
+        <span>Name:</span>
+        <input class="col-12 input-name" formControlName="name" pInputText/>
       </div>
       <div class="col-6">
         <label for="value">Price: </label>
-        <p-inputNumber class="monthly-expense-price col-12" formControlName="value" mode="currency" [currency]="currency" id="value"></p-inputNumber>
+        <p-inputNumber [currency]="currency" class="monthly-expense-price col-12" formControlName="value"
+                       id="value" mode="currency"></p-inputNumber>
       </div>
       <div class="col-12 grid">
         <div class="col-4">
           <span>Start in:</span>
-          <p-calendar [minDate]="minDate" formControlName="startDate" [touchUI]="true" [showIcon]="true" dateFormat="mm/yy" [readonlyInput]="true" view="month" styleClass="col-12" appendTo="body"/>
+          <p-calendar [minDate]="minDate" [readonlyInput]="true" [showIcon]="true" [touchUI]="true"
+                      appendTo="body" dateFormat="mm/yy" formControlName="startDate" styleClass="col-12" view="month"/>
         </div>
         <div class="col-4">
           <span>Until:</span>
-          <p-calendar [minDate]="minDate" formControlName="endDate" [touchUI]="true" [showButtonBar]="true" [showIcon]="true" dateFormat="mm/yy"  aria-describedby="end-help" [readonlyInput]="true" view="month" styleClass="col-12" appendTo="body"/>
+          <p-calendar [minDate]="minDate" [readonlyInput]="true" [showButtonBar]="true" [showIcon]="true"
+                      [touchUI]="true" appendTo="body" aria-describedby="end-help" dateFormat="mm/yy"
+                      formControlName="endDate" styleClass="col-12" view="month"/>
           <small id="end-help">Leave it empty for undetermined end</small>
         </div>
         <div class="col-4">
           <span>Day:</span>
-          <p-dropdown class="dropdown-day" formControlName="day" [options]="days" appendTo="body"/>
+          <p-dropdown [options]="days" appendTo="body" class="dropdown-day" formControlName="day"/>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
-<p-dialog [(visible)]="visible" [header]="header"  styleClass="md:my-modal-width lg:my-modal-width xl:my-modal-width " (onHide)="onCloseHandle()" [modal]="true" [closable]="true"
-          appendTo="body" [draggable]="false">
+<p-dialog (onHide)="onCloseHandle()" [(visible)]="visible" [closable]="true"
+          [draggable]="false" [header]="header" [modal]="true"
+          appendTo="body" styleClass="md:my-modal-width lg:my-modal-width xl:my-modal-width ">
   <ng-container *ngTemplateOutlet="externalContent"></ng-container>
   <ng-template #externalContent>
     <ng-content></ng-content>
@@ -7,10 +8,10 @@
   <ng-template pTemplate="footer">
     <div class="justify-content-between flex">
       <div>
-        <p-button icon="pi pi-times" label="Cancel" iconPos="left" (onClick)="onCloseHandle()"></p-button>
+        <p-button (onClick)="onCloseHandle()" icon="pi pi-times" iconPos="left" label="Cancel"></p-button>
       </div>
       <div>
-        <p-button icon="pi pi-save" label="Save" iconPos="left" (onClick)="onSaveClick()"></p-button>
+        <p-button (onClick)="onSaveClick()" icon="pi pi-save" iconPos="left" label="Save"></p-button>
       </div>
     </div>
   </ng-template>

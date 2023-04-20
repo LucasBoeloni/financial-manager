@@ -19,7 +19,7 @@ export abstract class GenericService {
   }
 
   public findById<T>(id: number): Observable<T> {
-    return this.httpClient.get<T>(`${this.resourceUrl}/${id}`,{params: this.setStandardParams()})
+    return this.httpClient.get<T>(`${this.resourceUrl}/${id}`, {params: this.setStandardParams()})
   }
 
   public findAll<T>(event: any): Observable<Page<T>> {
@@ -36,16 +36,16 @@ export abstract class GenericService {
   }
 
   public delete(id: number): Observable<void> {
-    return this.httpClient.delete<void>(`${this.resourceUrl}/${id}`,{params: this.setStandardParams()})
+    return this.httpClient.delete<void>(`${this.resourceUrl}/${id}`, {params: this.setStandardParams()})
   }
 
   public update<T>(model: T): Observable<T> {
-    return this.httpClient.put<T>(this.resourceUrl, model,{params: this.setStandardParams()});
+    return this.httpClient.put<T>(this.resourceUrl, model, {params: this.setStandardParams()});
   }
 
-  private setStandardParams(param?: HttpParams): HttpParams{
-    if(!param){
-     param = new HttpParams();
+  private setStandardParams(param?: HttpParams): HttpParams {
+    if (!param) {
+      param = new HttpParams();
     }
     return param.set('user', JSON.stringify(ActiveUserService.getInstance().getUser()?.id))
       .set('monthYear', JSON.stringify(SelectedMonthYearService.getInstance().getMonthYear()?.value));

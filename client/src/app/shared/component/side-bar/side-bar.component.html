@@ -1,13 +1,13 @@
 <p-sidebar [modal]="false" [ngClass]="visibleClass ? 'visible-sideBar' : 'hidden-sideBar'"
-           [visible]="true" [showCloseIcon]="false">
+           [showCloseIcon]="false" [visible]="true">
   <p class="sidebar-header">
-    <em class="visible-button" (click)="switchVisible()"
-        [ngClass]="visibleClass ? 'pi pi-times' : 'pi pi-bars'"></em>
+    <em (click)="switchVisible()" [ngClass]="visibleClass ? 'pi pi-times' : 'pi pi-bars'"
+        class="visible-button"></em>
   </p>
 
-  <ng-template ngFor let-item [ngForOf]="menuItens">
-    <a *ngIf="item.display" class="sideBarMenuItem" routerLink="{{ item.rout }}"
-       pTooltip="{{ visible ? '' : item.text }}" tooltipPosition="right">
+  <ng-template [ngForOf]="menuItens" let-item ngFor>
+    <a *ngIf="item.display" class="sideBarMenuItem" pTooltip="{{ visible ? '' : item.text }}"
+       routerLink="{{ item.rout }}" tooltipPosition="right">
       <em class="{{ item.icon }}"></em>
       <p *ngIf="visible">{{ item.text }}</p>
     </a>

@@ -15,17 +15,15 @@ export class ExpenseCardComponent {
   @Input() expense: ExpenseModel;
   @Input() currency: string = 'BRL';
   @Input() dateFormat: string = 'dd/MM/yyyy';
-  private readonly YEAR_FIX = 2;
-  pCalendarDateFormat = this.dateFormat.toLowerCase().substring(0,this.dateFormat.length - this.YEAR_FIX);
   @Input() editing: boolean = false;
   @Output() onNewExpense: EventEmitter<ExpenseModel> = new EventEmitter<ExpenseModel>();
   @Output() onDeleteExpense: EventEmitter<ExpenseModel> = new EventEmitter<ExpenseModel>();
   @Output() onEditExpense: EventEmitter<ExpenseModel> = new EventEmitter<ExpenseModel>();
-
-
   isLoadingExpense: boolean = false;
-
   initialEditExpenseValue: ExpenseModel;
+  private readonly YEAR_FIX = 2;
+  pCalendarDateFormat = this.dateFormat.toLowerCase().substring(0, this.dateFormat.length - this.YEAR_FIX);
+  private readonly JOKER_ID = -1;
 
   constructor(
     private service: ExpenseService
@@ -34,13 +32,11 @@ export class ExpenseCardComponent {
 
   toggleEdit(): void {
     this.editing = !this.editing;
-    if(this.editing){
-      this.initialEditExpenseValue =  Object.assign({},this.expense);
+    if (this.editing) {
+      this.initialEditExpenseValue = Object.assign({}, this.expense);
       this.expense.date = moment(this.expense.date).toDate();
     }
   }
-
-  private readonly JOKER_ID = -1;
 
   isNewExpense(): boolean {
     return this.expense.id === this.JOKER_ID;
@@ -52,7 +48,7 @@ export class ExpenseCardComponent {
 
   createNewExpense(): void {
     this.editing = true;
-    this.initialEditExpenseValue =  Object.assign({},this.expense);
+    this.initialEditExpenseValue = Object.assign({}, this.expense);
     this.expense.id = 0;
   }
 
@@ -76,12 +72,20 @@ export class ExpenseCardComponent {
       this.expense = response;
       this.toggleEdit();
       this.isLoadingExpense = false;
-      if(newExpense){
+      if (newExpense) {
         this.onNewExpense.emit(this.expense);
         this.expense = new ExpenseModel(this.JOKER_ID, '', null, new Date())
       } else {
         this.onEditExpense.emit(this.expense)
       }
+    })
+  }
+
+  deleteExpense() {
+    this.isLoadingExpense = true;
+    this.service.delete(this.expense.id).subscribe(() => {
+      this.onDeleteExpense.emit(this.expense)
+      this.isLoadingExpense = false;
     })
   }
 
@@ -92,14 +96,6 @@ export class ExpenseCardComponent {
     if (this.expense.user) {
       this.expense.user = ActiveUserService.getInstance().getUser()
     }
-  }
-
-  deleteExpense(){
-    this.isLoadingExpense = true;
-    this.service.delete(this.expense.id).subscribe(() => {
-      this.onDeleteExpense.emit(this.expense)
-      this.isLoadingExpense = false;
-    })
   }
 
 }

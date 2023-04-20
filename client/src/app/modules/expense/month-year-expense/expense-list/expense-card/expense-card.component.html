@@ -1,41 +1,43 @@
-<p-blockUI [target]="pnl" [blocked]="isLoadingExpense">
+<p-blockUI [blocked]="isLoadingExpense" [target]="pnl">
   <i class="pi pi-spin pi-spinner" style="font-size: 3rem"></i>
 </p-blockUI>
 <p-panel #pnl class="invisible-panel">
-  <div class="p-card card-expense flex grow {{isNewExpense() ? 'new-expense-div' : 'justify-content-between'}} " >
-    <div *ngIf="!isNewExpense()" class="flex col-12 justify-content-between" >
+  <div class="p-card card-expense flex grow {{isNewExpense() ? 'new-expense-div' : 'justify-content-between'}} ">
+    <div *ngIf="!isNewExpense()" class="flex col-12 justify-content-between">
       <div>
         <div *ngIf="!labelVisible()">
           <p>Expense : {{ expense.name }}</p>
           <p>Price : {{ expense.value | currency : currency }}</p>
           <p>Date : {{ expense.date | date : dateFormat }}</p>
         </div>
-        <div class="card-editing" *ngIf="editing">
+        <div *ngIf="editing" class="card-editing">
           <div class="flex justify-content-between">
             <label for="name">Expense : </label>
-            <input [(ngModel)]="expense.name" pInputText id="name">
+            <input [(ngModel)]="expense.name" id="name" pInputText>
           </div>
           <div class="flex justify-content-between">
             <label for="value">Price : </label>
-            <p-inputNumber mode="currency" [currency]="currency" [(ngModel)]="expense.value" id="value"></p-inputNumber>
+            <p-inputNumber [(ngModel)]="expense.value" [currency]="currency" id="value" mode="currency"></p-inputNumber>
           </div>
           <div class="flex justify-content-between">
             <label for="date">Date : </label>
-            <p-calendar [touchUI]="true" [(ngModel)]="expense.date" [readonlyInput]="true" [dateFormat]="pCalendarDateFormat" appendTo="body" id="date"></p-calendar>
+            <p-calendar [(ngModel)]="expense.date" [dateFormat]="pCalendarDateFormat" [readonlyInput]="true"
+                        [touchUI]="true" appendTo="body" id="date"></p-calendar>
           </div>
         </div>
       </div>
       <div *ngIf="!isNewExpense()">
-        <p-button *ngIf="!isCreatingNewExpense()" icon="pi pi-trash" (onClick)="deleteExpense()" styleClass="p-button-rounded p-button-text"></p-button>
-        <p-button *ngIf="!editing" icon="pi pi-pencil" (onClick)="toggleEdit()"
+        <p-button (onClick)="deleteExpense()" *ngIf="!isCreatingNewExpense()" icon="pi pi-trash"
                   styleClass="p-button-rounded p-button-text"></p-button>
-        <p-button *ngIf="editing" icon="pi pi-check" (onClick)="save()"
+        <p-button (onClick)="toggleEdit()" *ngIf="!editing" icon="pi pi-pencil"
                   styleClass="p-button-rounded p-button-text"></p-button>
-        <p-button *ngIf="editing" icon="pi pi-times" (onClick)="cancel()"
+        <p-button (onClick)="save()" *ngIf="editing" icon="pi pi-check"
+                  styleClass="p-button-rounded p-button-text"></p-button>
+        <p-button (onClick)="cancel()" *ngIf="editing" icon="pi pi-times"
                   styleClass="p-button-rounded p-button-text"></p-button>
       </div>
     </div>
-    <p-button *ngIf="isNewExpense()" icon="pi pi-plus" (onClick)="createNewExpense()"
+    <p-button (onClick)="createNewExpense()" *ngIf="isNewExpense()" icon="pi pi-plus"
               styleClass="p-button-rounded p-button-text new-expense-button"></p-button>
     <div>
       <i *ngIf="isLoadingExpense" class="pi pi-spin pi-spinner"></i>

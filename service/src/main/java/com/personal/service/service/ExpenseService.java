@@ -42,7 +42,7 @@ public class ExpenseService {
 		dto.setUser(userService.getById(userId));
 
 		Expense entity = repository.save(mapper.toEntity(dto));
-		monthYearExpenseRepository.save(new MonthYearExpense(entity.getId(),monthYearId,userId));
+		monthYearExpenseRepository.save(new MonthYearExpense(entity.getId(), monthYearId, userId));
 		return mapper.toDto(entity);
 	}
 
@@ -55,8 +55,8 @@ public class ExpenseService {
 		monthYearExpenseRepository.saveAll(monthYearExpenses);
 	}
 
-	public List<ExpenseDTO> getAll(Long monthYearId,Long userId) {
-		return monthYearExpenseRepository.getAllByUserAndMonth(userId,monthYearId);
+	public List<ExpenseDTO> getAll(Long monthYearId, Long userId) {
+		return monthYearExpenseRepository.getAllByUserAndMonth(userId, monthYearId);
 	}
 
 	public void deativateActive(Long id) {

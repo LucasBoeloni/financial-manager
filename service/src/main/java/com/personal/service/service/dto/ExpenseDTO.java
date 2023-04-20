@@ -1,6 +1,5 @@
 package com.personal.service.service.dto;
 
-import com.personal.service.domain.Expense;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

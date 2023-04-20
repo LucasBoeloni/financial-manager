@@ -47,7 +47,7 @@ public class MonthlyExpenseResource {
 		return new ResponseEntity<>(service.getAll(userId, pageable), HttpStatus.OK);
 	}
 
-	@DeleteMapping(value ="/{id}")
+	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<List<MonthlyExpenseDTO>> deactivateExpense(@PathVariable Long id) {
 		service.deativateActive(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);

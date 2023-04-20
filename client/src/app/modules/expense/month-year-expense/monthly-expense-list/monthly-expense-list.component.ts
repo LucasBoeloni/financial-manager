@@ -12,7 +12,7 @@ import {MonthlyExpenseModel} from "../../models/monthly-expense.model";
   templateUrl: './monthly-expense-list.component.html',
   styleUrls: ['./monthly-expense-list.component.scss']
 })
-export class MonthlyExpenseListComponent implements OnInit{
+export class MonthlyExpenseListComponent implements OnInit {
 
 
   @Input() currency: string = 'BRL';
@@ -29,31 +29,26 @@ export class MonthlyExpenseListComponent implements OnInit{
   totalRecords: number;
 
   monthlyExpenseVisible: boolean = false;
+  cols: any[] = [
+    {header: 'Name', field: 'name'},
+    {header: 'Price', field: 'value'},
+    {header: 'Start Date', field: 'startDate'},
+    {header: 'End Date', field: 'endDate'},
+    {header: 'Day', field: 'day'},
+  ];
+  monthlyExpenses: MonthlyExpenseModel[] = [];
+  loader: boolean = true;
 
   constructor(
     private router: Router,
     private service: MonthlyExpenseService
-
   ) {
   }
-
-  cols: any[] = [
-    {header: 'Name', field:'name'},
-    {header: 'Price', field:'value'},
-    {header: 'Start Date', field:'startDate'},
-    {header: 'End Date', field:'endDate'},
-    {header: 'Day', field:'day'},
-  ];
-
-  monthlyExpenses: MonthlyExpenseModel[] = [];
-
-  loader: boolean = true;
-
 
   ngOnInit(): void {
   }
 
-  getMonthlyExpenses(event: any){
+  getMonthlyExpenses(event: any) {
     this.loader = true;
     this.service.findAll<MonthlyExpenseModel>(event).subscribe(res => {
       this.monthlyExpenses = res.content;
@@ -61,37 +56,38 @@ export class MonthlyExpenseListComponent implements OnInit{
     })
   }
 
-  goToExpenses(){
+  goToExpenses() {
     this.router.navigateByUrl(RouteNames.EXPENSE);
   }
 
-  onRowEditInit(value: MonthlyExpenseModel, index: number){
-    this.monthlyExpenseEdit = Object.assign({},value);
+  onRowEditInit(value: MonthlyExpenseModel, index: number) {
+    this.monthlyExpenseEdit = Object.assign({}, value);
     this.monthlyExpenses[index].startDate = moment(this.monthlyExpenses[index].startDate).toDate();
-    if(!!this.monthlyExpenses[index].endDate){
+    if (!!this.monthlyExpenses[index].endDate) {
       this.monthlyExpenses[index].endDate = moment(this.monthlyExpenses[index].endDate).toDate();
     }
   }
 
-  onRowEditSave(value: MonthlyExpenseModel, index: number){
-    this.service.update(value).subscribe(() => {},(error) => this.onRowEditCancel(value, index))
+  onRowEditSave(value: MonthlyExpenseModel, index: number) {
+    this.service.update(value).subscribe(() => {
+    }, (error) => this.onRowEditCancel(value, index))
   }
 
-  onRowDelete(value: MonthlyExpenseModel, index: number){
+  onRowDelete(value: MonthlyExpenseModel, index: number) {
     this.service.delete(value.id).subscribe(() => {
-      this.monthlyExpenses.splice(index,1);
+      this.monthlyExpenses.splice(index, 1);
     })
   }
 
-  onRowEditCancel(value: MonthlyExpenseModel, index: number){
+  onRowEditCancel(value: MonthlyExpenseModel, index: number) {
     this.monthlyExpenses[index] = this.monthlyExpenseEdit
   }
 
-  openMonthlyExpense(){
+  openMonthlyExpense() {
     this.monthlyExpenseVisible = true;
   }
 
-  pushNewExpense(newMonthlyExpense: MonthlyExpenseModel){
+  pushNewExpense(newMonthlyExpense: MonthlyExpenseModel) {
     const aux: MonthlyExpenseModel[] = this.monthlyExpenses;
     aux.push(newMonthlyExpense);
     this.monthlyExpenses = aux;

@@ -48,7 +48,7 @@ public class Expense {
 	private User user;
 
 
-	public Expense(MonthlyExpense monthlyExpense){
+	public Expense(MonthlyExpense monthlyExpense) {
 		this.name = monthlyExpense.getName();
 		this.value = monthlyExpense.getValue();
 		this.date = LocalDate.now().withDayOfMonth(monthlyExpense.getDay());

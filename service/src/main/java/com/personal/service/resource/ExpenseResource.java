@@ -35,12 +35,12 @@ public class ExpenseResource {
 		return new ResponseEntity<>(service.insert(dto, userId, monthYearId), HttpStatus.CREATED);
 	}
 
-	@GetMapping(value ="/list")
+	@GetMapping(value = "/list")
 	public ResponseEntity<List<ExpenseDTO>> insert(@RequestParam("user") Long userId, @RequestParam("monthYear") Long monthYearId) {
 		return new ResponseEntity<>(service.getAll(monthYearId, userId), HttpStatus.OK);
 	}
 
-	@DeleteMapping(value ="/{id}")
+	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<List<ExpenseDTO>> deactivateExpense(@PathVariable Long id) {
 		service.deativateActive(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);

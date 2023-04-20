@@ -8,19 +8,11 @@ export class ActiveUserService {
   private constructor() {
   }
 
-  public static getInstance(): ActiveUserService {
-    if (!ActiveUserService.instance) {
-      ActiveUserService.instance = new ActiveUserService();
-    }
-
-    return ActiveUserService.instance;
-  }
-
   private get activeUser(): UserModel | null {
     const user = localStorage.getItem(USER);
     if (!!user) {
       const userModel: UserModel = JSON.parse(user) as UserModel;
-      if(userModel.system === 'sgf'){
+      if (userModel.system === 'sgf') {
         return userModel;
       }
       return null;
@@ -32,6 +24,13 @@ export class ActiveUserService {
     localStorage.setItem(USER, JSON.stringify(activeUser))
   }
 
+  public static getInstance(): ActiveUserService {
+    if (!ActiveUserService.instance) {
+      ActiveUserService.instance = new ActiveUserService();
+    }
+
+    return ActiveUserService.instance;
+  }
 
   public isLogged(): boolean {
     if (!!this.activeUser) {

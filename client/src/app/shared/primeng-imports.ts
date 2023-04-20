@@ -12,7 +12,6 @@ import {InputNumberModule} from "primeng/inputnumber";
 import {CalendarModule} from "primeng/calendar";
 import {SelectButtonModule} from "primeng/selectbutton";
 import {RippleModule} from "primeng/ripple";
-import {InputSwitchModule} from "primeng/inputswitch";
 import {ToggleButtonModule} from "primeng/togglebutton";
 import {PanelModule} from "primeng/panel";
 

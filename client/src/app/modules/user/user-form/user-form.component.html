@@ -1,27 +1,27 @@
-<sgf-modal-form (onSave)="save()" header="New user" (onClose)="onClose()" [(visible)]="visible">
+<sgf-modal-form (onClose)="onClose()" (onSave)="save()" [(visible)]="visible" header="New user">
   <form [formGroup]="form">
     <div class="col-12 grid">
       <div class="col-12 grid">
         <div class="col-6">
           <label for="name">name</label>
-          <input id="name" class="col-12" formControlName="name" type="text" placeholder="name" pInputText>
+          <input class="col-12" formControlName="name" id="name" pInputText placeholder="name" type="text">
         </div>
         <div class="col-6">
           <label for="surname">surname</label>
-          <input id="surname" class="col-12" type="text" formControlName="surname" placeholder="surname"
-                 pInputText>
+          <input class="col-12" formControlName="surname" id="surname" pInputText placeholder="surname"
+                 type="text">
         </div>
       </div>
       <div class="col-12 grid">
         <div class="col-6">
           <label for="email">email</label>
-          <input id="email" class="col-12" type="text" formControlName="email" placeholder="email" pInputText>
+          <input class="col-12" formControlName="email" id="email" pInputText placeholder="email" type="text">
         </div>
         <div class="col-6">
           <label for="password">password</label>
-          <input id="password" pPassword type="password" class="col-12" formControlName="password"
+          <input [feedback]="false" class="col-12" formControlName="password" id="password" pPassword
                  placeholder="password"
-                 [feedback]="false">
+                 type="password">
         </div>
       </div>
     </div>

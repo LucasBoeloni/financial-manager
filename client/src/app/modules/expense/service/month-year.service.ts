@@ -1,9 +1,6 @@
 import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
 import {GenericService} from "../../../shared/services/generic.service";
-import {SelectModel} from "../../../shared/models/select.model";
-import {ActiveUserService} from "../../../shared/services/active-user.service";
 
 @Injectable({
   providedIn: 'root'

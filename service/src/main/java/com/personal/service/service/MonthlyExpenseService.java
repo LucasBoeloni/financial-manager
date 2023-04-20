@@ -35,7 +35,7 @@ public class MonthlyExpenseService {
 	public MonthlyExpenseDTO insert(MonthlyExpenseDTO dto, Long userId) {
 		dto.setUser(userService.getById(userId));
 		dto.setStartDate(dto.getStartDate().withDayOfMonth(FIRST_DAY_OF_MONTH));
-		if(Objects.nonNull(dto.getEndDate())){
+		if (Objects.nonNull(dto.getEndDate())) {
 			dto.setEndDate(dto.getEndDate().withDayOfMonth(FIRST_DAY_OF_MONTH));
 		}
 		MonthlyExpense entity = repository.save(mapper.toEntity(dto));
@@ -43,7 +43,7 @@ public class MonthlyExpenseService {
 	}
 
 	public Page<MonthlyExpenseDTO> getAll(Long userId, Pageable pageable) {
-		return repository.getAllByUser(userId,pageable);
+		return repository.getAllByUser(userId, pageable);
 	}
 
 	public void deativateActive(Long id) {

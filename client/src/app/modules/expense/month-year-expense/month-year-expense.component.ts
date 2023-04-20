@@ -31,6 +31,9 @@ export class MonthYearExpenseComponent implements OnInit {
   currency: string = 'BRL';
 
   monthlyExpenseVisible: boolean = false;
+  blockedPanel = false;
+  private readonly DIF_THRESHOLD: number = 35;
+  private readonly TODAY: Date = new Date();
 
   constructor(
     private service: MonthYearService,
@@ -39,23 +42,13 @@ export class MonthYearExpenseComponent implements OnInit {
   ) {
   }
 
-  blockedPanel = false;
-  private readonly DIF_THRESHOLD: number = 35;
-
-  private readonly  TODAY: Date = new Date();
-
   public onMonthYearChange(event: any): void {
     if (!!this.selectedMonthYear) {
       this.setMonthYearAndFind();
     }
   }
 
-  private setMonthYearAndFind() {
-    SelectedMonthYearService.getInstance().setMonthYear(this.getSelectedMonthYearAsSelect());
-    this.getExpenses()
-  }
-
-  openMonthlyExpense(){
+  openMonthlyExpense() {
     this.monthlyExpenseVisible = true;
   }
 
@@ -65,13 +58,43 @@ export class MonthYearExpenseComponent implements OnInit {
     this.startPage(todayMonthYearString);
   }
 
+  public addAndRearrangeExpenses(newExpense: ExpenseModel) {
+    const backup = this.expenses;
+    this.expenses = [];
+    this.expenses.push(newExpense)
+    this.expenses.push(...backup);
+    this.refreshData();
+  }
+
+  public removeAndRearrangeExpenses(oldExpense: ExpenseModel) {
+    this.expenses.splice(this.expenses.indexOf(oldExpense), 1);
+    this.refreshData();
+  }
+
+  refreshData() {
+    const initialValue = 0;
+    const total: number = this.expenses.map(expense => !!expense.value ? expense.value : 0)
+      .reduce((accumulator, currentValue) => accumulator + currentValue, initialValue);
+    this.data.amount = this.expenses.length;
+    this.data.total = total;
+  }
+
+  goToMonthlyExpenseView() {
+    this.router.navigateByUrl(RouteNames.MONTHLY_EXPENSE);
+  }
+
+  private setMonthYearAndFind() {
+    SelectedMonthYearService.getInstance().setMonthYear(this.getSelectedMonthYearAsSelect());
+    this.getExpenses()
+  }
+
   private startPage(todayMonthYearString: string) {
     this.service.findAllList<SelectModel>().subscribe(response => {
       this.monthYears = response;
       if (!this.monthYears.some(month => month.label === todayMonthYearString)) {
         this.createNewMonthYear(todayMonthYearString);
       } else {
-        if(!this.selectedMonthYear){
+        if (!this.selectedMonthYear) {
           this.selectedMonthYear = this.monthYears.at(0)?.value;
         }
         this.setMonthYearAndFind()
@@ -87,52 +110,26 @@ export class MonthYearExpenseComponent implements OnInit {
     })
   }
 
-  private getExpenses(): void{
+  private getExpenses(): void {
     this.loadingExpenses = true;
     this.expenseService.findAllList<ExpenseModel>().subscribe(response => {
       this.expenses = response
       this.refreshData();
       this.loadingExpenses = false;
-      if(this.selectedMonthBeforeToday()){
+      if (this.selectedMonthBeforeToday()) {
         this.blockedPanel = true;
-      }else{
+      } else {
         this.blockedPanel = false;
       }
     });
   }
 
-
   private selectedMonthBeforeToday(): boolean {
-    return moment(this.TODAY).diff(MonthStringUtil.buildMonthYearDate( this.getSelectedMonthYearAsSelect().label),'days') > this.DIF_THRESHOLD;
+    return moment(this.TODAY).diff(MonthStringUtil.buildMonthYearDate(this.getSelectedMonthYearAsSelect().label), 'days') > this.DIF_THRESHOLD;
   }
 
   private getSelectedMonthYearAsSelect(): SelectModel {
     return this.monthYears.find(monthYear => monthYear.value === this.selectedMonthYear) as SelectModel;
-  }
-
-  public addAndRearrangeExpenses(newExpense: ExpenseModel){
-    const backup = this.expenses;
-    this.expenses = [];
-    this.expenses.push(newExpense)
-    this.expenses.push(...backup);
-    this.refreshData();
-  }
-
-  public removeAndRearrangeExpenses(oldExpense: ExpenseModel){
-    this.expenses.splice(this.expenses.indexOf(oldExpense), 1);
-    this.refreshData();
-  }
-
-  refreshData(){
-    const initialValue = 0;
-    const total: number = this.expenses.map(expense => !!expense.value ? expense.value : 0)
-      .reduce((accumulator, currentValue) => accumulator + currentValue, initialValue);
-    this.data.amount = this.expenses.length;
-    this.data.total = total;
-  }
-
-  goToMonthlyExpenseView(){
-    this.router.navigateByUrl(RouteNames.MONTHLY_EXPENSE);
   }
 
 }

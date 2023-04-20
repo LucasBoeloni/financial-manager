@@ -1,18 +1,18 @@
-<p-card class="flex justify-content-center" [header]="'Login'">
+<p-card [header]="'Login'" class="flex justify-content-center">
   <form [formGroup]="form">
     <div class="div-login">
-      <input class="col-12" formControlName="email" type="text" placeholder="email" pInputText>
-      <input pPassword type="password" formControlName="password" class="col-12" placeholder="Password"
-             [feedback]="false">
+      <input class="col-12" formControlName="email" pInputText placeholder="email" type="text">
+      <input [feedback]="false" class="col-12" formControlName="password" pPassword placeholder="Password"
+             type="password">
     </div>
   </form>
   <ng-template pTemplate="footer">
     <div class="justify-content-between flex">
       <div>
-        <button pButton label="New user" (click)="openNewAccountDialog()"></button>
+        <button (click)="openNewAccountDialog()" label="New user" pButton></button>
       </div>
       <div>
-        <button pButton (click)="login()" label="Login"></button>
+        <button (click)="login()" label="Login" pButton></button>
       </div>
     </div>
   </ng-template>

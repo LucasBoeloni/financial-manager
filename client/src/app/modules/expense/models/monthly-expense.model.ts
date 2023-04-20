@@ -1,4 +1,3 @@
-
 export class MonthlyExpenseModel {
   constructor(
     public id: number,

@@ -8,7 +8,7 @@ export class MonthStringUtil {
   }
 
   public static buildMonthYearDate(string: string): Date {
-    return  moment(string).toDate();
+    return moment(string).toDate();
   }
 
 }

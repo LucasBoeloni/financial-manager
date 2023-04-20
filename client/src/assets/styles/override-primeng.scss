@@ -22,17 +22,19 @@
   font-size: 5em
 }
 
-.monthly-expense-button button{
+.monthly-expense-button button {
   margin: 1vh;
 }
+
 .monthly-expense-price span {
   input {
-    width:100%;
+    width: 100%;
   }
+
   width: 100%;
 }
 
-.dropdown-day div{
+.dropdown-day div {
   margin: 0.5rem;
   margin-left: 0;
   width: 100%;
@@ -42,10 +44,12 @@
   .p-panel-header {
     display: none;
   }
-  .p-panel{
+
+  .p-panel {
     border: none;
   }
-  .p-panel-content{
+
+  .p-panel-content {
     padding: 0;
     margin: 0;
   }

@@ -6,65 +6,67 @@ import {PageChangeEvent} from "../models/page-change.event";
 
 export class RequestUtil {
 
-	public static getParamsWithPageAndSize(page?: number, size?: number): HttpParams {
-		let params: HttpParams = new HttpParams();
+  public static getParamsWithPageAndSize(page?: number, size?: number): HttpParams {
+    let params: HttpParams = new HttpParams();
 
-		if (!page) {
-			page = PageListEnum.INITIAL_PAGE;
-		}
-		if (!size) {
-			size = PageListEnum.INITIAL_ROWS;
-		}
+    if (!page) {
+      page = PageListEnum.INITIAL_PAGE;
+    }
+    if (!size) {
+      size = PageListEnum.INITIAL_ROWS;
+    }
 
-		params = params.append('page', String(page));
-		params = params.append('size', String(size));
-		params = params.append('sort', '');
+    params = params.append('page', String(page));
+    params = params.append('size', String(size));
+    params = params.append('sort', '');
 
-		return params;
-	}
+    return params;
+  }
 
-	public static getParamsFromLazyLoadEvent(event?: LazyLoadEvent, pageable?: { sort: string }): HttpParams {
-		if (!event) {
-			return this.formatParams(new HttpParams(), event, pageable);
-		}
+  public static getParamsFromLazyLoadEvent(event?: LazyLoadEvent, pageable?: { sort: string }): HttpParams {
+    if (!event) {
+      return this.formatParams(new HttpParams(), event, pageable);
+    }
 
-		let params: HttpParams =
+    let params: HttpParams =
       this.getParamsWithPageAndSize((!!event.first ? event.first : 0) / (!!event.rows ? event.rows : 0), event.rows);
-		params = params.set('sort', this.formatSortField(event));
+    params = params.set('sort', this.formatSortField(event));
 
-		return this.formatParams(params, event, pageable);
-	}
+    return this.formatParams(params, event, pageable);
+  }
 
-	public static getParamsFromPageChangeEvent(event?: PageChangeEvent, pageable?: { sort: string }): HttpParams {
-		if (!event) {
-			return this.formatParams(new HttpParams(), null, pageable);
-		}
+  public static getParamsFromPageChangeEvent(event?: PageChangeEvent, pageable?: { sort: string }): HttpParams {
+    if (!event) {
+      return this.formatParams(new HttpParams(), null, pageable);
+    }
 
-		let params: HttpParams = this.getParamsWithPageAndSize(event.page, event.rows);
-		params = params.set('sort', this.formatSortField());
+    let params: HttpParams = this.getParamsWithPageAndSize(event.page, event.rows);
+    params = params.set('sort', this.formatSortField());
 
-		return this.formatParams(params, null, pageable);
-	}
+    return this.formatParams(params, null, pageable);
+  }
 
-	private static formatParams(params: HttpParams, tableEvent?: Table | LazyLoadEvent | null, pageable?: { sort: string }): HttpParams {
-		if (!tableEvent && !!pageable && !!pageable.sort) {
-			params = params.append('sort', pageable.sort);
-		}
+  private static formatParams(params: HttpParams, tableEvent?: Table | LazyLoadEvent | null, pageable?: {
+    sort: string
+  }): HttpParams {
+    if (!tableEvent && !!pageable && !!pageable.sort) {
+      params = params.append('sort', pageable.sort);
+    }
 
-		if (!tableEvent && !pageable) {
-			params = RequestUtil.getParamsWithPageAndSize();
-		}
+    if (!tableEvent && !pageable) {
+      params = RequestUtil.getParamsWithPageAndSize();
+    }
 
-		return params;
-	}
+    return params;
+  }
 
-	private static formatSortField(sorter?: Table | LazyLoadEvent): string {
-		if (!sorter) {
-			return '';
-		}
+  private static formatSortField(sorter?: Table | LazyLoadEvent): string {
+    if (!sorter) {
+      return '';
+    }
 
-		const direction = sorter.sortOrder === 1 ? 'ASC' : 'DESC';
-		return !sorter.sortField ? '' : `${ sorter.sortField },${ direction }`;
-	}
+    const direction = sorter.sortOrder === 1 ? 'ASC' : 'DESC';
+    return !sorter.sortField ? '' : `${sorter.sortField},${direction}`;
+  }
 
 }

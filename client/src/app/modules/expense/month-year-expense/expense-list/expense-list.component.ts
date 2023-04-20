@@ -17,15 +17,15 @@ export class ExpenseListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onNewExpenseEmitter(event: ExpenseModel){
+  onNewExpenseEmitter(event: ExpenseModel) {
     this.onNewExpense.emit(event)
   }
 
-  onEditExpenseEmitter(event: ExpenseModel){
+  onEditExpenseEmitter(event: ExpenseModel) {
     this.onEditExpense.emit(event)
   }
 
-  onDeleteExpenseEmitter(event: ExpenseModel){
+  onDeleteExpenseEmitter(event: ExpenseModel) {
     this.onDeleteExpense.emit(event)
   }
 

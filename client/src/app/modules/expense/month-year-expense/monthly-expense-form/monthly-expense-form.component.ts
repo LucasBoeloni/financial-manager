@@ -9,7 +9,7 @@ import {MonthlyExpenseModel} from "../../models/monthly-expense.model";
   templateUrl: './monthly-expense-form.component.html',
   styleUrls: ['./monthly-expense-form.component.scss']
 })
-export class MonthlyExpenseFormComponent implements OnInit{
+export class MonthlyExpenseFormComponent implements OnInit {
 
   @Input() visible: boolean = false;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -20,13 +20,12 @@ export class MonthlyExpenseFormComponent implements OnInit{
   formBuilder: FormBuilder = new FormBuilder();
 
   minDate = new Date();
+  days: number[] = Array.from({length: 25}, (_, i) => i + 1)
 
   constructor(
     private service: MonthlyExpenseService
   ) {
   }
-
-  days: number[] = Array.from({length: 25}, (_, i) => i + 1)
 
   ngOnInit(): void {
     this.buildEmptyForm()
@@ -48,8 +47,8 @@ export class MonthlyExpenseFormComponent implements OnInit{
     this.visibleChange.emit(this.visible)
   }
 
-  save(){
-    if(this.form.valid){
+  save() {
+    if (this.form.valid) {
       this.service.create(this.form.getRawValue()).subscribe(res => {
         this.onSave.emit(res);
         this.onClose()
