@@ -2,6 +2,7 @@ package com.personal.service.service;
 
 import com.personal.service.domain.MonthlyExpense;
 import com.personal.service.repository.MonthlyExpenseRepository;
+import com.personal.service.service.dto.DataExpenseDTO;
 import com.personal.service.service.dto.MonthlyExpenseDTO;
 import com.personal.service.service.mapper.MonthlyExpenseMapper;
 import com.personal.service.utils.ExceptionMessageUtil;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import javax.ws.rs.BadRequestException;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Service
@@ -44,6 +46,10 @@ public class MonthlyExpenseService {
 
 	public Page<MonthlyExpenseDTO> getAll(Long userId, Pageable pageable) {
 		return repository.getAllByUser(userId, pageable);
+	}
+
+	public DataExpenseDTO getData(Long userId) {
+		return repository.getData(userId, LocalDate.now().withDayOfMonth(FIRST_DAY_OF_MONTH));
 	}
 
 	public void deativateActive(Long id) {

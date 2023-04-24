@@ -1,8 +1,17 @@
-<div class="p-card header-monthly-expense text-right">
-  <p-button (onClick)="openMonthlyExpense()" class="monthly-expense-button" icon="pi pi-plus"
-            label="New monthly expense"></p-button>
-  <p-button (onClick)="goToExpenses()" class="monthly-expense-button" icon="pi pi-arrow-left"
-            label="Go back to expenses"></p-button>
+<div class="p-card flex header-monthly-expense justify-content-between">
+  <div class="div-data flex" >
+    <div>
+      <i *ngIf="loaderData" class="pi pi-spin pi-spinner"></i>
+    </div>
+    <h3 *ngIf="!loaderData">Monthly total : {{this.data.total | currency: currency }} </h3>
+    <h3 *ngIf="!loaderData">Monthly Amount : {{this.data.amount}}</h3>
+  </div>
+  <div>
+    <p-button (onClick)="openMonthlyExpense()" class="monthly-expense-button" icon="pi pi-plus"
+              label="New monthly expense"></p-button>
+    <p-button (onClick)="goToExpenses()" class="monthly-expense-button" icon="pi pi-arrow-left"
+              label="Go back to expenses"></p-button>
+  </div>
 </div>
 
 <div class="p-card">

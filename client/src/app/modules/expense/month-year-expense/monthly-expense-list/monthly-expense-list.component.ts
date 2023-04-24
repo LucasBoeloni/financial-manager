@@ -5,6 +5,7 @@ import {MonthlyExpenseService} from "../../service/monthly-expense.service";
 import {TableEnum} from "../../../../shared/utils/table-enum";
 import * as moment from "moment";
 import {MonthlyExpenseModel} from "../../models/monthly-expense.model";
+import {DataExpenseModel} from "../../models/data-expense.model";
 
 
 @Component({
@@ -28,6 +29,8 @@ export class MonthlyExpenseListComponent implements OnInit {
 
   totalRecords: number;
 
+  data: DataExpenseModel = new DataExpenseModel();
+
   monthlyExpenseVisible: boolean = false;
   cols: any[] = [
     {header: 'Name', field: 'name'},
@@ -38,6 +41,7 @@ export class MonthlyExpenseListComponent implements OnInit {
   ];
   monthlyExpenses: MonthlyExpenseModel[] = [];
   loader: boolean = true;
+  loaderData: boolean = true;
 
   constructor(
     private router: Router,
@@ -46,6 +50,15 @@ export class MonthlyExpenseListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getData();
+  }
+
+  getData(){
+    this.loaderData = true;
+    this.service.getData().subscribe(res => {
+      this.data = res
+      this.loaderData = false;
+    })
   }
 
   getMonthlyExpenses(event: any) {
@@ -53,6 +66,7 @@ export class MonthlyExpenseListComponent implements OnInit {
     this.service.findAll<MonthlyExpenseModel>(event).subscribe(res => {
       this.monthlyExpenses = res.content;
       this.totalRecords = res.totalElements;
+      this.loader = false;
     })
   }
 

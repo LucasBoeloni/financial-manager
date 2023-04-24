@@ -1,6 +1,7 @@
 package com.personal.service.resource;
 
 import com.personal.service.service.MonthlyExpenseService;
+import com.personal.service.service.dto.DataExpenseDTO;
 import com.personal.service.service.dto.MonthlyExpenseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -45,6 +46,11 @@ public class MonthlyExpenseResource {
 	@GetMapping()
 	public ResponseEntity<Page<MonthlyExpenseDTO>> insert(@RequestParam("user") Long userId, Pageable pageable) {
 		return new ResponseEntity<>(service.getAll(userId, pageable), HttpStatus.OK);
+	}
+
+	@GetMapping("/get-data")
+	public ResponseEntity<DataExpenseDTO> insert(@RequestParam("user") Long userId) {
+		return new ResponseEntity<>(service.getData(userId), HttpStatus.OK);
 	}
 
 	@DeleteMapping(value = "/{id}")

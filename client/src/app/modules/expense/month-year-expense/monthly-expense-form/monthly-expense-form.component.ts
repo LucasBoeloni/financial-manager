@@ -34,7 +34,7 @@ export class MonthlyExpenseFormComponent implements OnInit {
   buildEmptyForm(): void {
     this.form = this.formBuilder.group({
       name: [null, [Validators.required]],
-      startDate: [null, [Validators.required]],
+      startDate: [new Date(), [Validators.required]],
       endDate: [null],
       day: [this.days[0], [Validators.required]],
       value: [null, [Validators.required]],

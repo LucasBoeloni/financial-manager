@@ -3,6 +3,8 @@ import {LazyLoadEvent} from 'primeng/api';
 import {Table} from 'primeng/table';
 import {PageListEnum} from "./page-list.enum";
 import {PageChangeEvent} from "../models/page-change.event";
+import {ActiveUserService} from "../services/active-user.service";
+import {SelectedMonthYearService} from "../services/selected-month-year.service";
 
 export class RequestUtil {
 
@@ -67,6 +69,14 @@ export class RequestUtil {
 
     const direction = sorter.sortOrder === 1 ? 'ASC' : 'DESC';
     return !sorter.sortField ? '' : `${sorter.sortField},${direction}`;
+  }
+
+  public static setStandardParams(param?: HttpParams): HttpParams {
+    if (!param) {
+      param = new HttpParams();
+    }
+    return param.set('user', JSON.stringify(ActiveUserService.getInstance().getUser()?.id))
+      .set('monthYear', JSON.stringify(SelectedMonthYearService.getInstance().getMonthYear()?.value));
   }
 
 }
