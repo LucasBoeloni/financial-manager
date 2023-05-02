@@ -43,6 +43,8 @@ export class MonthlyExpenseListComponent implements OnInit {
   loader: boolean = true;
   loaderData: boolean = true;
 
+  filter: MonthlyExpenseModel = new MonthlyExpenseModel();
+
   constructor(
     private router: Router,
     private service: MonthlyExpenseService
@@ -63,7 +65,7 @@ export class MonthlyExpenseListComponent implements OnInit {
 
   getMonthlyExpenses(event: any) {
     this.loader = true;
-    this.service.findAll<MonthlyExpenseModel>(event).subscribe(res => {
+    this.service.findAllFilter<MonthlyExpenseModel>(event,this.filter).subscribe(res => {
       this.monthlyExpenses = res.content;
       this.totalRecords = res.totalElements;
       this.loader = false;

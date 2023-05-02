@@ -25,6 +25,11 @@ export abstract class GenericService {
     return this.httpClient.get<Page<T>>(this.resourceUrl, {params: RequestUtil.setStandardParams(param)})
   }
 
+  public findAllFilter<T>(event: any,filter: any): Observable<Page<T>> {
+    let param = RequestUtil.getParamsFromLazyLoadEvent(event);
+    return this.httpClient.post<Page<T>>(`${this.resourceUrl}/filter`, filter,{params: RequestUtil.setStandardParams(param)})
+  }
+
   public findAllList<T>(): Observable<T[]> {
     return this.httpClient.get<T[]>(`${this.resourceUrl}/list`, {params: RequestUtil.setStandardParams()})
   }

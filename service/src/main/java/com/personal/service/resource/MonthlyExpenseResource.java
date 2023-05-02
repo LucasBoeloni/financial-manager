@@ -3,6 +3,7 @@ package com.personal.service.resource;
 import com.personal.service.service.MonthlyExpenseService;
 import com.personal.service.service.dto.DataExpenseDTO;
 import com.personal.service.service.dto.MonthlyExpenseDTO;
+import com.personal.service.service.filter.MonthlyExpenseFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -43,9 +44,9 @@ public class MonthlyExpenseResource {
 		return new ResponseEntity<>(service.insert(dto, userId), HttpStatus.OK);
 	}
 
-	@GetMapping()
-	public ResponseEntity<Page<MonthlyExpenseDTO>> insert(@RequestParam("user") Long userId, Pageable pageable) {
-		return new ResponseEntity<>(service.getAll(userId, pageable), HttpStatus.OK);
+	@PostMapping("/filter")
+	public ResponseEntity<Page<MonthlyExpenseDTO>> insert(@RequestBody MonthlyExpenseFilter filter, @RequestParam("user") Long userId, Pageable pageable) {
+		return new ResponseEntity<>(service.getAllFilter(filter, userId, pageable), HttpStatus.OK);
 	}
 
 	@GetMapping("/get-data")

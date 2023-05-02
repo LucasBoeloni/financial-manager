@@ -4,6 +4,7 @@ import com.personal.service.domain.MonthlyExpense;
 import com.personal.service.repository.MonthlyExpenseRepository;
 import com.personal.service.service.dto.DataExpenseDTO;
 import com.personal.service.service.dto.MonthlyExpenseDTO;
+import com.personal.service.service.filter.MonthlyExpenseFilter;
 import com.personal.service.service.mapper.MonthlyExpenseMapper;
 import com.personal.service.utils.ExceptionMessageUtil;
 import lombok.RequiredArgsConstructor;
@@ -44,8 +45,8 @@ public class MonthlyExpenseService {
 		return mapper.toDto(entity);
 	}
 
-	public Page<MonthlyExpenseDTO> getAll(Long userId, Pageable pageable) {
-		return repository.getAllByUser(userId, pageable);
+	public Page<MonthlyExpenseDTO> getAllFilter(MonthlyExpenseFilter filter, Long userId, Pageable pageable) {
+		return repository.findAll(filter.filter(), pageable).map(mapper::toDto);
 	}
 
 	public DataExpenseDTO getData(Long userId) {
