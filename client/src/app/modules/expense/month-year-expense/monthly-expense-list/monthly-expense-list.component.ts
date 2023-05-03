@@ -23,7 +23,7 @@ export class MonthlyExpenseListComponent implements OnInit {
 
   monthlyExpenseEdit: MonthlyExpenseModel;
 
-  days: number[] = Array.from({length: 25}, (_, i) => i + 1)
+  days: any[] = [null].concat(Array.from({length: 25}, (_, i) => i + 1) as any)
 
   rowsPerPage = TableEnum.ROWS_PER_PAGE;
 
@@ -63,7 +63,7 @@ export class MonthlyExpenseListComponent implements OnInit {
     })
   }
 
-  getMonthlyExpenses(event: any) {
+  getMonthlyExpenses(event: any = null) {
     this.loader = true;
     this.service.findAllFilter<MonthlyExpenseModel>(event,this.filter).subscribe(res => {
       this.monthlyExpenses = res.content;

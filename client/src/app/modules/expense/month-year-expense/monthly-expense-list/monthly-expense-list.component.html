@@ -38,6 +38,26 @@
           Actions
         </th>
       </tr>
+      <tr class="col-12">
+        <th class="col-2">
+          <input pInputText [(ngModel)]="filter.name" >
+        </th>
+        <th class="col-2">
+          <input pInputText [(ngModel)]="filter.value" >
+        </th>
+        <th class="col-2">
+          <p-calendar [(ngModel)]="filter.startDate" ></p-calendar>
+        </th>
+        <th class="col-2">
+          <p-calendar [(ngModel)]="filter.endDate" ></p-calendar>
+        </th>
+        <th class="col-2">
+          <p-dropdown [options]="days" [(ngModel)]="filter.day" ></p-dropdown>
+        </th>
+        <th class="col-2 text-center ">
+          <p-button icon="pi pi-search" (onClick)="getMonthlyExpenses()" styleClass="p-button-rounded p-button-text p-button-raised"></p-button>
+        </th>
+      </tr>
     </ng-template>
     <ng-template let-columns="columns" let-editing="editing" let-ri="rowIndex" let-rowData pTemplate="body">
       <tr [pEditableRow]="rowData" class="col-12">
