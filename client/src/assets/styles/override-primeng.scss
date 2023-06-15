@@ -55,3 +55,19 @@
   }
 }
 
+.expense-calendar .p-calendar{
+  width: 100%;
+}
+
+.inputnumber-expense{
+  width: 100%;
+  span{
+    width: 100%;
+
+    input{
+      flex: 0 0 auto;
+      padding: 0.5rem;
+      width: 100%;
+    }
+  }
+}

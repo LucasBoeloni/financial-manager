@@ -10,20 +10,11 @@
           <p>Price : {{ expense.value | currency : currency }}</p>
           <p>Date : {{ expense.date | date : dateFormat }}</p>
         </div>
-        <div *ngIf="editing" class="card-editing">
-          <div class="flex justify-content-between">
-            <label for="name">Expense : </label>
-            <input [(ngModel)]="expense.name" id="name" pInputText>
-          </div>
-          <div class="flex justify-content-between">
-            <label for="value">Price : </label>
-            <p-inputNumber [(ngModel)]="expense.value" [currency]="currency" id="value" mode="currency"></p-inputNumber>
-          </div>
-          <div class="flex justify-content-between">
-            <label for="date">Date : </label>
-            <p-calendar [(ngModel)]="expense.date" [dateFormat]="pCalendarDateFormat" [readonlyInput]="true"
-                        [touchUI]="true" appendTo="body" id="date"></p-calendar>
-          </div>
+        <div *ngIf="editing" class="col-12">
+            <input class="col-12" placeholder="Expense" [(ngModel)]="expense.name" pInputText>
+            <p-inputNumber class="inputnumber-expense" placeholder="Price" [(ngModel)]="expense.value" [currency]="currency"  mode="currency"></p-inputNumber>
+            <p-calendar class="expense-calendar" placeholder="Date" [(ngModel)]="expense.date" [dateFormat]="pCalendarDateFormat" [readonlyInput]="true"
+                        [touchUI]="true" appendTo="body"></p-calendar>
         </div>
       </div>
       <div class="col-1" *ngIf="!isNewExpense()">

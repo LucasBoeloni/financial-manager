@@ -6,7 +6,7 @@ spring:
     name: sgfservice
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5432/sgf
     username: admin
     password: admin
     hikari:
