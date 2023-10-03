@@ -2,8 +2,8 @@
   <i class="pi pi-spin pi-spinner" style="font-size: 3rem"></i>
 </p-blockUI>
 <blockable-div #pnl >
-  <div class="p-card card-expense flex grow {{isNewExpense() ? 'new-expense-div' : 'justify-content-between'}} overflow-hidden ">
-    <div *ngIf="!isNewExpense()" class="grid col-12 justify-content-between">
+  <div *ngIf="!isNewExpense()" class="p-card card-expense flex grow justify-content-between overflow-hidden ">
+    <div class="grid col-12 justify-content-between">
       <div class="col-11" >
         <div *ngIf="!labelVisible()">
           <p>Expense : {{ expense.name }}</p>
@@ -26,7 +26,7 @@
           </div>
         </div>
       </div>
-      <div class="col-1" *ngIf="!isNewExpense()">
+      <div class="col-1">
         <p-button (onClick)="deleteExpense()" *ngIf="!isCreatingNewExpense()" icon="pi pi-trash"
                   styleClass="p-button-rounded p-button-text"></p-button>
         <p-button (onClick)="toggleEdit()" *ngIf="!editing" icon="pi pi-pencil"
@@ -37,8 +37,9 @@
                   styleClass="p-button-rounded p-button-text"></p-button>
       </div>
     </div>
-    <p-button (onClick)="createNewExpense()" *ngIf="isNewExpense()" icon="pi pi-plus"
-              styleClass="p-button-rounded p-button-text new-expense-button"></p-button>
+  </div>
+  <div *ngIf="isNewExpense()" (click)="createNewExpense()" class="p-card card-expense flex grow new-expense-div overflow-hidden " >
+    <em  class="pi pi-plus new-expense-button" ></em>
   </div>
 </blockable-div>
 
