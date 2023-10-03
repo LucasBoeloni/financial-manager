@@ -14,6 +14,7 @@ import {SelectButtonModule} from "primeng/selectbutton";
 import {RippleModule} from "primeng/ripple";
 import {ToggleButtonModule} from "primeng/togglebutton";
 import {PanelModule} from "primeng/panel";
+import {MenubarModule} from "primeng/menubar";
 
 export const PRIMENG_IMPORTS: any = [
   SidebarModule,
@@ -31,5 +32,6 @@ export const PRIMENG_IMPORTS: any = [
   SelectButtonModule,
   RippleModule,
   ToggleButtonModule,
-  PanelModule
+  PanelModule,
+  MenubarModule
 ];

@@ -30,9 +30,6 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/primeicons/primeicons.css",
-              "node_modules/primeng/resources/themes/viva-dark/theme.css",
-              "node_modules/primeng/resources/primeng.min.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -96,18 +93,13 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/primeicons/primeicons.css",
-              "node_modules/primeng/resources/themes/viva-dark/theme.css",
-              "node_modules/primeng/resources/primeng.min.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/primeng/resources/themes/viva-dark/theme.css"
             ],
             "scripts": []
           }
         }
       }
     }
-  },
-  "cli": {
-    "analytics": "75314a92-4181-43cb-9062-e8f5117b7ee4"
   }
 }

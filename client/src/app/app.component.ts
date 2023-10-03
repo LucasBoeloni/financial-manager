@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {SideBarMenuItem} from "./shared/component/side-bar/models/sideBarMenuItem";
+import {TopBarMenuItem} from "./shared/component/top-bar/models/topBarMenuItem";
 import {NavigationEnd, Router} from "@angular/router";
 import {ActiveUserService} from "./shared/services/active-user.service";
 import {RouteNames} from "./shared/utils/rout-enum";
@@ -12,7 +12,7 @@ import {RouteNames} from "./shared/utils/rout-enum";
 export class AppComponent implements OnInit {
   title = 'client';
   userOn: boolean = false;
-  menuItens: SideBarMenuItem[] = [];
+  menuItens: TopBarMenuItem[] = [];
 
   constructor(
     private router: Router,
@@ -28,9 +28,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
 
     this.menuItens.push(...[
-      new SideBarMenuItem('Dashboard', RouteNames.DASHBOARD, 'pi pi-chart-bar'),
-      new SideBarMenuItem('Expense', RouteNames.EXPENSE, 'pi pi-calendar-times'),
-      new SideBarMenuItem('Goal', RouteNames.GOAL, 'pi pi-car'),
+      new TopBarMenuItem('Dashboard', RouteNames.DASHBOARD, 'pi pi-chart-bar'),
+      new TopBarMenuItem('Expense', RouteNames.EXPENSE, 'pi pi-calendar-times'),
+      new TopBarMenuItem('Goal', RouteNames.GOAL, 'pi pi-car'),
     ])
   }
 

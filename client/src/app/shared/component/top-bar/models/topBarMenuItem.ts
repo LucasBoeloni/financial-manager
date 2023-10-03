@@ -1,7 +1,7 @@
-export class SideBarMenuItem {
+export class TopBarMenuItem {
   constructor(
-    public text: string,
-    public rout: string,
+    public label: string,
+    public routerLink: string,
     public icon?: string,
     public display: boolean = true
   ) {

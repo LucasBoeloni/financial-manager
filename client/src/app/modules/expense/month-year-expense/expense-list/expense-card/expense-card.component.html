@@ -1,7 +1,7 @@
 <p-blockUI [blocked]="isLoadingExpense" [target]="pnl">
   <i class="pi pi-spin pi-spinner" style="font-size: 3rem"></i>
 </p-blockUI>
-<p-panel #pnl class="invisible-panel">
+<blockable-div #pnl >
   <div class="p-card card-expense flex grow {{isNewExpense() ? 'new-expense-div' : 'justify-content-between'}} overflow-hidden ">
     <div *ngIf="!isNewExpense()" class="grid col-12 justify-content-between">
       <div class="col-11" >
@@ -40,6 +40,6 @@
     <p-button (onClick)="createNewExpense()" *ngIf="isNewExpense()" icon="pi pi-plus"
               styleClass="p-button-rounded p-button-text new-expense-button"></p-button>
   </div>
-</p-panel>
+</blockable-div>
 
 

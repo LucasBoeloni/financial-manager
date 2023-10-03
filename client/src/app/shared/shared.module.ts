@@ -1,15 +1,17 @@
 import {NgModule} from '@angular/core';
 import {PRIMENG_IMPORTS} from './primeng-imports';
-import {ModalFormComponent} from "./component/modal-form/modal-form.component";
-import {SideBarComponent} from "./component/side-bar/side-bar.component";
+import {TopBarComponent} from "./component/top-bar/top-bar.component";
 import {RouterLink} from "@angular/router";
 import {ANGULAR_IMPORTS} from "./angular-imports";
+import {BlockableDivComponent} from "./component/blockable-div/blockable-div.component";
+import {ModalFormComponent} from "./component/modal-form/modal-form.component";
 
 const SHARED_MODULE_PRIVATE_DECLARATIONS: any[] = [];
 
 const SHARED_MODULE_DECLARATIONS: any[] = [
-  ModalFormComponent,
-  SideBarComponent,
+  BlockableDivComponent,
+  TopBarComponent,
+  ModalFormComponent
 ];
 
 @NgModule({

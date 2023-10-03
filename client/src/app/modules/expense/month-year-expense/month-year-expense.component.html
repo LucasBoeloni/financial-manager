@@ -24,7 +24,7 @@
 <p-blockUI [blocked]="blockedPanel" [target]="pnl">
   <i class="pi pi-lock" style="font-size: 3rem"></i>
 </p-blockUI>
-<p-panel #pnl class="invisible-panel">
+<blockable-div #pnl [style]="'margin: 1vh'" [class]="'p-card'">
   <div class="p-card body-expense">
     <div *ngIf="loadingExpenses" class="col-12 text-center">
       <i class="pi pi-spin pi-spinner"></i>
@@ -32,5 +32,5 @@
     <expense-list (onDeleteExpense)="removeAndRearrangeExpenses($event)" (onEditExpense)="refreshData()"
                   (onNewExpense)="addAndRearrangeExpenses($event)" [expenses]="expenses"></expense-list>
   </div>
-</p-panel>
+</blockable-div>
 <monthly-expense-form [(visible)]="monthlyExpenseVisible"></monthly-expense-form>
