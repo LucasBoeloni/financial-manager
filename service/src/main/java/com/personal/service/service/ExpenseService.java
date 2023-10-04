@@ -59,7 +59,7 @@ public class ExpenseService {
 		return monthYearExpenseRepository.getAllByUserAndMonth(userId, monthYearId);
 	}
 
-	public void deativateActive(Long id) {
+	public void deactivateExpense(Long id) {
 		repository.deactivateExpense(id);
 	}
 

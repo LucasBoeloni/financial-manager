@@ -15,6 +15,6 @@ export class MonthlyExpenseService extends GenericService {
   }
 
   public getData(): Observable<DataExpenseModel> {
-    return this.httpClient.get<DataExpenseModel>(`${this.resourceUrl}/get-data` , {params: RequestUtil.setStandardParams()})
+    return this.httpClient.get<DataExpenseModel>(`${this.resourceUrl}/get-data`)
   }
 }

@@ -17,28 +17,28 @@ export abstract class GenericService {
   }
 
   public findById<T>(id: number): Observable<T> {
-    return this.httpClient.get<T>(`${this.resourceUrl}/${id}`, {params: RequestUtil.setStandardParams()})
+    return this.httpClient.get<T>(`${this.resourceUrl}/${id}`)
   }
 
   public findAll<T>(event: any): Observable<Page<T>> {
     let param = RequestUtil.getParamsFromLazyLoadEvent(event);
-    return this.httpClient.get<Page<T>>(this.resourceUrl, {params: RequestUtil.setStandardParams(param)})
+    return this.httpClient.get<Page<T>>(this.resourceUrl, {params: param})
   }
 
   public findAllList<T>(): Observable<T[]> {
-    return this.httpClient.get<T[]>(`${this.resourceUrl}/list`, {params: RequestUtil.setStandardParams()})
+    return this.httpClient.get<T[]>(`${this.resourceUrl}/list`)
   }
 
   public create<T>(model: T): Observable<T> {
-    return this.httpClient.post<T>(this.resourceUrl, model, {params: RequestUtil.setStandardParams()})
+    return this.httpClient.post<T>(this.resourceUrl, model)
   }
 
   public delete(id: number): Observable<void> {
-    return this.httpClient.delete<void>(`${this.resourceUrl}/${id}`, {params: RequestUtil.setStandardParams()})
+    return this.httpClient.delete<void>(`${this.resourceUrl}/${id}`)
   }
 
   public update<T>(model: T): Observable<T> {
-    return this.httpClient.put<T>(this.resourceUrl, model, {params: RequestUtil.setStandardParams()});
+    return this.httpClient.put<T>(this.resourceUrl, model);
   }
 
 

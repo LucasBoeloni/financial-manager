@@ -42,7 +42,7 @@ public class ExpenseResource {
 
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<List<ExpenseDTO>> deactivateExpense(@PathVariable Long id) {
-		service.deativateActive(id);
+		service.deactivateExpense(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
